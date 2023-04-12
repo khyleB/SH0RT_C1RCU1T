@@ -1,0 +1,89 @@
+body {
+  background-image: url("imgs/soli-bg.png");
+  background-repeat: repeat;
+}
+
+h1 {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+}
+
+h3 {
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.tagline {
+  padding: 0 0 15px 0;
+  line-height: 0px;
+  color: white;
+  font-style: italic;
+}
+
+.tagline a {
+  color: lime;
+}
+
+img {
+  border: none;
+}
+
+.full-gameboard {
+  display: flex;
+}
+
+div {
+  margin: 15px;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+#instructions {
+  display: inline-block;
+  height: fit-content;
+  max-width: 34%;
+  padding: 10px 35px 35px 35px;
+  background-color: rgba(167, 255, 49, 0.6);
+  border: 2px solid black;
+  border-radius: 25px;
+}
+
+#instructions p {
+  margin: 15px
+}
+
+.collapsed-rules {
+  display: none;
+}
+
+.expanded-rules {
+  display: block;
+}
+
+.stronk {
+  font-weight: bold;
+}
+
+.button {
+  padding: 7px;
+  border-color: green;
+  border-radius: 10px;
+  background-color: rgb(167, 255, 49);
+}
+
+.card {
+  border: none;
+  background-color: transparent;
+
+}
+
+.card-clickable {
+  background-image: url(imgs/card-clickable.png);
+  background-color: transparent;
+  border: none;
+}
