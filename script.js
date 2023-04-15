@@ -56,53 +56,41 @@ class RoyalSpace extends MatrixSpace { // Same as above, with royal spaces.
 }
 
 const royal1 = new RoyalSpot(null, 'r1', 'royal-space');
-royal1.setImage();
 var r1 = {...royal1}; // This makes a copy of the object so it can be modified but the original stays the same (Y)
 // I'm not sure if there is a more efficient way to do this than just assigning them all manually
 //I'm also not sure if it would be smarter to establish the variables in the document where we'll be using them, since I assume we want to keep the bulky constructors in one document
 
 const royal2 = new RoyalSpot(null, 'r2', 'royal-space');
-royal1.setImage();
 var r2 = {...royal2};
 
 const royal3 = new RoyalSpot(null, 'r3', 'royal-space');
-royal1.setImage();
 var r3 = {...royal3};
 
 const royal4 = new RoyalSpot(null, 'r4', 'royal-space');
-royal1.setImage();
 var r4 = {...royal4};
 
 const royal5 = new RoyalSpot(null, 'r5', 'royal-space');
-royal1.setImage();
 var r5 = {...royal5};
 
 const royal6 = new RoyalSpot(null, 'r6', 'royal-space');
-royal1.setImage();
 var r6 = {...royal6};
 
 const royal7 = new RoyalSpot(null, 'r7', 'royal-space');
-royal1.setImage();
 var r7 = {...royal7};
 
 const royal8 = new RoyalSpot(null, 'r8', 'royal-space');
-royal1.setImage();
 var r8 = {...royal8};
 
 const royal9 = new RoyalSpot(null, 'r9', 'royal-space');
-royal1.setImage();
 var r9 = {...royal9};
 
 const royal10 = new RoyalSpot(null, 'r10', 'royal-space');
-royal1.setImage();
 var r10 = {...royal10};
 
 const royal11 = new RoyalSpot(null, 'r11', 'royal-space');
-royal1.setImage();
 var r11 = {...royal11};
 
 const royal12 = new RoyalSpot(null, 'r12', 'royal-space');
-royal1.setImage();
 var r12 = {...royal12};
 
 
