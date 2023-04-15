@@ -55,43 +55,74 @@ class RoyalSpace extends MatrixSpace { // Same as above, with royal spaces.
   }
 }
 
-const royal1 = new RoyalSpot(null, 'r1', 'royal-space');
+// Royal space global variables
+
+const royal1 = new royalSpace(null, 'r1', 'royal-space');
 var r1 = {...royal1}; // This makes a copy of the object so it can be modified but the original stays the same (Y)
 // I'm not sure if there is a more efficient way to do this than just assigning them all manually
 //I'm also not sure if it would be smarter to establish the variables in the document where we'll be using them, since I assume we want to keep the bulky constructors in one document
 
-const royal2 = new RoyalSpot(null, 'r2', 'royal-space');
+const royal2 = new royalSpace(null, 'r2', 'royal-space');
 var r2 = {...royal2};
 
-const royal3 = new RoyalSpot(null, 'r3', 'royal-space');
+const royal3 = new royalSpace(null, 'r3', 'royal-space');
 var r3 = {...royal3};
 
-const royal4 = new RoyalSpot(null, 'r4', 'royal-space');
+const royal4 = new royalSpace(null, 'r4', 'royal-space');
 var r4 = {...royal4};
 
-const royal5 = new RoyalSpot(null, 'r5', 'royal-space');
+const royal5 = new royalSpace(null, 'r5', 'royal-space');
 var r5 = {...royal5};
 
-const royal6 = new RoyalSpot(null, 'r6', 'royal-space');
+const royal6 = new royalSpace(null, 'r6', 'royal-space');
 var r6 = {...royal6};
 
-const royal7 = new RoyalSpot(null, 'r7', 'royal-space');
+const royal7 = new royalSpace(null, 'r7', 'royal-space');
 var r7 = {...royal7};
 
-const royal8 = new RoyalSpot(null, 'r8', 'royal-space');
+const royal8 = new royalSpace(null, 'r8', 'royal-space');
 var r8 = {...royal8};
 
-const royal9 = new RoyalSpot(null, 'r9', 'royal-space');
+const royal9 = new royalSpace(null, 'r9', 'royal-space');
 var r9 = {...royal9};
 
-const royal10 = new RoyalSpot(null, 'r10', 'royal-space');
+const royal10 = new royalSpace(null, 'r10', 'royal-space');
 var r10 = {...royal10};
 
-const royal11 = new RoyalSpot(null, 'r11', 'royal-space');
+const royal11 = new royalSpace(null, 'r11', 'royal-space');
 var r11 = {...royal11};
 
-const royal12 = new RoyalSpot(null, 'r12', 'royal-space');
+const royal12 = new royalSpace(null, 'r12', 'royal-space');
 var r12 = {...royal12};
+
+// Number space global variables
+
+const numSpace1 = new numberSpace(null, 'm1', 'number', 'r1', 'r12');
+var m1 = {...numSpace1};
+
+const numSpace2 = new numberSpace(null, 'm2', 'number', 'r2', null);
+var m2 = {...numSpace2};
+
+const numSpace3 = new numberSpace(null, 'm3', 'number', 'r3', 'r4');
+var m3 = {...numSpace3};
+
+const numSpace4 = new numberSpace(null, 'm4', 'number', 'r11', null);
+var m4 = {...numSpace4};
+
+const numSpace5 = new numberSpace(null, 'm5', 'number', null, null);
+var m5 = {...numSpace5};
+
+const numSpace6 = new numberSpace(null, 'm6', 'number', 'r5', null);
+var m6 = {...numSpace6};
+
+const numSpace7 = new numberSpace(null, 'm7', 'number', 'r9', 'r10');
+var m7 = {...numSpace7};
+
+const numSpace8 = new numberSpace(null, 'm8', 'number', 'r8', null);
+var m8 = {...numSpace8};
+
+const numSpace9 = new numberSpace(null, 'm9', 'number', 'r6', 'r7');
+var m9 = {...numSpace9};
 
 /*     ----------     Basic card constructor     ----------     */
 
@@ -342,7 +373,7 @@ const diamondAceProto = new Ace('imgs/diamond-ace.png', 'Ace of Diamonds', 1, nu
 var diamondAce = {...diamondAceProto};
 
 const clubAceProto = new Ace('imgs/club-ace.png', 'Ace of Clubs', 1, null, 'club', 'black');
-ovar clubAce = {...clubAceProto};
+var clubAce = {...clubAceProto};
 
 /*     ---------- ~~~ Joker card constructor ~~~ ----------     */
 
@@ -364,8 +395,13 @@ var redJoker = {...redJokerProto};
 const blackJokerProto = new Joker('imgs/joker-black.png', 'Black Joker', 0, null);
 var blackJoker = {...blackJokerProto};
 
+const numberSpaces = [m1, m2, m3, m4, m5, m6, m7, m8, m9];
 
+const numberSpacesSetup = [m1, m2, m3, m4, m6, m7, m8, m9];
 
+const royalSpaces = [r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12];
+
+const fullDeck = []
 
 
 
