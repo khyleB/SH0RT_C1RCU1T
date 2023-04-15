@@ -5,8 +5,7 @@ and you can let me know if any of it seems problematic (Y)*/
 
 "use strict"; // This enables strict mode which flags uncaught errors. I can omit it or keep it in, whichever seems smarter to you
 
-class MatrixSpace { 
-	
+class MatrixSpace {
 	constructor(topCard, gridNum, type) { // Sets up the object constructor. Duh :P
     
 		this.topCard = topCard; // Like in python objects, you pass arguments(?) into the brackets when u make a new object and it refers to those values to assign ur object properties
@@ -406,6 +405,10 @@ const fullDeck = [spadeKing, spadeQueen, spadeJack, spadeTen, spadeNine, spadeEi
 // Note to self: was going to make a filtered version of the above array for numberDeck, but filter only creates a shallow copy. That might have been the source of some of the problems we had with arrays in the last version of this code
 
 const numberDeck = [spadeTen, spadeNine, spadeEight, spadeSeven, spadeSix, spadeFive, spadeFour, spadeThree, spadeTwo, heartTen, heartNine, heartEight, heartSeven, heartSix, heartFive, heartFour, heartThree, heartTwo, diamondTen, diamondNine, diamondEight, diamondSeven, diamondSix, diamondFive, diamondFour, diamondThree, diamondTwo, clubTen, clubNine, clubEight, clubSeven, clubSix, clubFive, clubFour, clubThree, clubTwo];
+
+/*          ----------  VAR VAriables that relate to these CONST variables  ----------          */
+
+var playingDeck = [...fullDeck];
 
 /*          ----------  HTML Selector Variables  ----------          */
 
