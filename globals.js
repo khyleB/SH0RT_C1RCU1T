@@ -401,9 +401,15 @@ const numberSpacesSetup = [m1, m2, m3, m4, m6, m7, m8, m9];
 
 const royalSpaces = [r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12];
 
-const fullDeck = []
+const fullDeck = [spadeKing, spadeQueen, spadeJack, spadeTen, spadeNine, spadeEight, spadeSeven, spadeSix, spadeFive, spadeFour, spadeThree, spadeTwo, heartKing, heartQueen, heartJack, heartTen, heartNine, heartEight, heartSeven, heartSix, heartFive, heartFour, heartThree, heartTwo, diamondKing, diamondQueen, diamondJack, diamondTen, diamondNine, diamondEight, diamondSeven, diamondSix, diamondFive, diamondFour, diamondThree, diamondTwo, clubKing, clubQueen, clubJack, clubTen, clubNine, clubEight, clubSeven, clubSix, clubFive, clubFour, clubThree, clubTwo];
+
+// Note to self: was going to make a filtered version of the above array for numberDeck, but filter only creates a shallow copy. That might have been the source of some of the problems we had with arrays in the last version of this code
+
+const numberDeck = [spadeTen, spadeNine, spadeEight, spadeSeven, spadeSix, spadeFive, spadeFour, spadeThree, spadeTwo, heartTen, heartNine, heartEight, heartSeven, heartSix, heartFive, heartFour, heartThree, heartTwo, diamondTen, diamondNine, diamondEight, diamondSeven, diamondSix, diamondFive, diamondFour, diamondThree, diamondTwo, clubTen, clubNine, clubEight, clubSeven, clubSix, clubFive, clubFour, clubThree, clubTwo];
 
 /*          ----------  HTML Selector Variables  ----------          */
+
+const r1Selector = $('#r1'); // Do not know if this is a clear enough name for this variable.
 
 const drawnText = $("#drawn-text");
 
