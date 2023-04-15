@@ -158,7 +158,165 @@ var clubQueen = {...clubQueenProto};
 const clubJackProto = new Royal('imgs/club-jack.png', 'Jack of Clubs', 11, null, 'club', 'black');
 var clubJack = {...clubJackProto};
 
-/*               -------------------- Royal Object Creation --------------------               */
+//Spade card constructor
+
+class Spade extends Card {
+	constructor(img, name, value, gridNum, suit='spade', colour='black', type='number') {
+		super(img, name, value, gridNum);
+		this.suit = suit;
+		this.colour = colour;
+		this.type = type;
+	}
+}
+
+/*               -------------------- Numbered Spades Object Creation --------------------               */
+
+const spadeTwoProto = new Spade('imgs/spade-two.png', 'Two of Spades', 2, null);
+var spadeTwo = {...spadeTwoProto};
+
+const spadeThreeProto = new Spade('imgs/spade-three.png', 'Three of Spades', 3, null);
+var spadeThree = {...spadeThreeProto};
+
+const spadeFourProto = new Spade('imgs/spade-four.png', 'Four of Spades', 4, null);
+var spadeFour = {...spadeFourProto};
+
+const spadeFiveProto = new Spade('imgs/spade-five.png', 'Five of Spades', 5, null);
+var spadeFive = {...spadeFiveProto};
+
+const spadeSixProto = new Spade('imgs/spade-six.png', 'Six of Spades', 6, null);
+var spadeSix = {...spadeSixProto};
+
+const spadeSevenProto = new Spade('imgs/spade-seven.png', 'Seven of Spades', 7, null);
+var spadeSeven = {...spadeSevenProto};
+
+const spadeEightProto = new Spade('imgs/spade-eight.png', 'Eight of Spades', 8, null);
+var spadeEight = {...spadeEightProto};
+
+const spadeNineProto = new Spade('imgs/spade-nine.png', 'Nine of Spades', 9, null);
+var spadeNine = {...spadeNineProto};
+
+const spadeTenProto = new Spade('imgs/spade-ten.png', 'Ten of Spades', 10, null);
+var spadeTen = {...spadeTenProto};
+
+//Heart card constructor
+
+class Heart extends Card {
+	constructor(img, name, value, gridNum, suit='heart', colour='red', type='number') {
+		super(img, name, value, gridNum);
+		this.suit = suit;
+		this.colour = colour;
+		this.type = type;
+	}
+}
+
+/*               -------------------- Numbered Hearts Object Creation --------------------               */
+
+const heartTwoProto = new Heart('imgs/heart-two.png', 'Two of Hearts', 2, null);
+var heartTwo = {...heartTwoProto};
+
+const heartThreeProto = new Heart('imgs/heart-three.png', 'Three of Hearts', 3, null);
+var heartThree = {...heartThreeProto};
+
+const heartFourProto = new Heart('imgs/heart-four.png', 'Four of Hearts', 4, null);
+var heartFour = {...heartFourProto};
+
+const heartFiveProto = new Heart('imgs/heart-five.png', 'Five of Hearts', 5, null);
+var heartFive = {...heartFiveProto};
+
+const heartSixProto = new Heart('imgs/heart-six.png', 'Six of Hearts', 6, null);
+var heartSix = {...heartSixProto};
+
+const heartSevenProto = new Heart('imgs/heart-seven.png', 'Seven of Hearts', 7, null);
+var heartSeven = {...heartSevenProto};
+
+const heartEightProto = new Heart('imgs/heart-eight.png', 'Eight of Hearts', 8, null);
+var heartEight = {...heartEightProto};
+
+const heartNineProto = new Heart('imgs/heart-nine.png', 'Nine of Hearts', 9, null);
+var heartNine = {...heartNineProto};
+
+const heartTenProto = new Heart('imgs/heart-ten.png', 'Ten of Hearts', 10, null);
+var heartTen = {...heartTenProto};
+
+//Diamond card constructor
+
+class Diamond extends Card {
+	constructor(img, name, value, gridNum, suit='diamond', colour='red', type='number') {
+		super(img, name, value, gridNum);
+		this.type = type;
+		this.suit = suit;
+		this.colour = colour;
+	}
+}
+
+/*               -------------------- Numbered Diamonds Object Creation --------------------               */
+
+const diamondTwoProto = new Diamond('imgs/diamond-two.png', 'Two of Diamonds', 2, null);
+var diamondTwo = {...diamondTwoProto};
+
+const diamondThreeProto = new Diamond('imgs/diamond-three.png', 'Three of Diamonds', 3, null);
+var diamondThree = {...diamondThreeProto};
+
+const diamondFourProto = new Diamond('imgs/diamond-four.png', 'Four of Diamonds', 4, null);
+var diamondFour = {...diamondFourProto};
+
+const diamondFiveProto = new Diamond('imgs/diamond-five.png', 'Five of Diamonds', 5, null);
+var diamondFive = {...diamondFiveProto};
+
+const diamondSixProto = new Diamond('imgs/diamond-six.png', 'Six of Diamonds', 6, null);
+var diamondSix = {...diamondSixProto};
+
+const diamondSevenProto = new Diamond('imgs/diamond-seven.png', 'Seven of Diamonds', 7, null);
+var diamondSeven = {...diamondSevenProto};
+
+const diamondEightProto = new Diamond('imgs/diamond-eight.png', 'Eight of Diamonds', 8, null);
+var diamondEight = {...diamondEightProto};
+
+const diamondNineProto = new Diamond('imgs/diamond-nine.png', 'Nine of Diamonds', 9, null);
+var diamondNine = {...diamondNineProto};
+
+const diamondTenProto = new Diamond('imgs/diamond-ten.png', 'Ten of Diamonds', 10, null);
+var diamondTen = {...diamondTenProto};
+
+//Club card constructor
+
+class Club extends Card {
+	constructor(img, name, value, gridNum, suit='club', colour='black', type='number') {
+		super(img, name, value, gridNum);
+		this.suit = suit;
+		this.colour = colour;
+		this.type = type;
+	}
+}
+
+/*               -------------------- Numbered Clubs Object Creation --------------------               */
+
+const clubTwoProto = new Club('imgs/club-two.png', 'Two of Clubs', 2, null);
+var clubTwo = {...clubTwoProto};
+
+const clubThreeProto = new Club('imgs/club-three.png', 'Three of Clubs', 3, null);
+var clubThree = {...clubThreeProto};
+
+const clubFourProto = new Club('imgs/club-four.png', 'Four of Clubs', 4, null); 
+var clubFour = {...clubFourProto};
+
+const clubFiveProto = new Club('imgs/club-five.png', 'Five of Clubs', 5, null);
+var clubFive = {...clubFiveProto};
+
+const clubSixProto = new Club('imgs/club-six.png', 'Six of Clubs', 6, null);
+var clubSix = {...clubSixProto};
+
+const clubSevenProto = new Club('imgs/club-seven.png', 'Seven of Clubs', 7, null);
+var clubSeven = {...clubSevenProto};
+
+const clubEightProto = new Club('imgs/club-eight.png', 'Eight of Clubs', 8, null);
+var clubEight = {...clubEightProto};
+
+const clubNineProto = new Club('imgs/club-nine.png', 'Nine of Clubs', 9, null);
+var clubNine = {...clubNineProto};
+
+const clubTenProto = new Club('imgs/club-ten.png', 'Ten of Clubs', 10, null);
+var clubTen = {...clubTenProto};
 
 /*     ---------- ~~~ Ace card constructor ~~~ ----------     */
 
