@@ -1,61 +1,23 @@
-/*
-
-CURRENT ISSUES:
-- Need to notify observer on drawpile click, but the "notify" function is attached to the subject object, which "drawpile" is not an interation of
-- All cards have a "set gridNum" method that you must call when they're placed, AND remove when they're returned to the deck.
-
-
-SUMMARY OF CHANGES 29/05/2023:
-- Brought back "currentCard" variable since it is the only way I can understand how to refer to and alter game behaviour. It is called "currentCard" and is a var whose contents will be replaced whenever a card is drawn or placed
-- Made a "noCard" variable so that instead of having seperate functions to set the blank card image, it will always just refer to currentCard and replace it with noCard when it's emptied. Whether the observer pattern will refer to this or it will be one of many events that fires from click events remains to be seen wrt efficiency
-
-
-
-*/
-
 "use strict";
 
 /*
  ____ ____ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ ____ ____ ____ ____ 
 ||H |||e |||l |||p |||e |||r |||       |||F |||u |||n |||c |||t |||i |||o |||n |||s ||
 ||__|||__|||__|||__|||__|||__|||_______|||__|||__|||__|||__|||__|||__|||__|||__|||__||
-|/__\|/__\|/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\| */
+|/__\|/__\|/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|
 
-// Remove var randomCard since you only want to use it locally. ✓
-// Having it be public just tempts you to call it instead of currentCardSubject ✓
-// Reminder to myself that you have to make it like "var [tempVar] = [function()]"
+// Functions with a somewhat general purpose that will be called by other functions. Not tied directly to any observers.*/
 
 
 
-function clickOn(space, event)
- // Adds event listener to a given html element
+function miscTestFunction(data) {
+  // Obviously will be deleted when all functions are in place, just helps me test my signals and click events! :D
 
-{
-
-  let clickableSpace = spaceSelectors[space];
-
-  clickableSpace.addClass('card-clickable');
-
-  clickableSpace.on('click', event);
+  alert(data + " has been passed into me, your test function! :D");
 
 }
-
-
-
-function clickOff(space, event)
-  // Removes event listener from a given html element
-
-{
-
-  let clickableSpace = spaceSelectors[space];
-
-  clickableSpace.removeClass('card-clickable');
-
-  clickableSpace.off('click');
-
-}
-
   
+
 
 function getRandomCard(array) {
   // Rolls a random number and gets the card at that index
@@ -96,7 +58,7 @@ function gameOver() {
 
 
 function setHtmlDrawnCard(card) {
-  // All this does is set the text of the current card that has been drawn
+  // All this does is set the text & image of the current card that has been drawn
 
   drawnCard.attr("src", card.img);
   drawnText.text(card.name);
@@ -114,8 +76,67 @@ function setImageMatrix(space, card) {
 
 
 
+function clickOnMatrix(space, callback)
+ // Adds event listener to a given html element. This is not called directly with a signal, so don't worry about the multiple arguments - they are accounted for in line 235
+
+{
+
+  console.log("clickOnMatrix successfully called!")
+
+  let clickableSpace = spaceSelectors[space];
+
+  clickableSpace.addClass('card-clickable');
+
+  clickableSpace.on('click', callback);
+
+}
+
+
+
+function clickOffMatrix(space)
+  // Removes event listener from a given html element
+
+{
+
+  let clickableSpace = spaceSelectors[space];
+
+  clickableSpace.removeClass('card-clickable');
+
+  clickableSpace.off('click');
+
+}
+
+/*
+ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ ____ ____ ____ ____ 
+||C |||a |||r |||d |||       |||F |||i |||l |||t |||e |||r |||       |||F |||u |||n |||c |||t |||i |||o |||n |||s ||
+||__|||__|||__|||__|||_______|||__|||__|||__|||__|||__|||__|||_______|||__|||__|||__|||__|||__|||__|||__|||__|||__||
+|/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|
+
+// Functions either called directly by an observer or by other functions fired by that observer. They filter cards in space arrays, such as matrixSpaces and royalSpaces.*/
+
+
+
+function emptySpaceFinder(array) {
+  // Goes through a space array and finds spaces with no cards. Duh! (Returns the array of empties)
+
+  var emptySpaces = []
+
+  for (let space of array) {
+
+    if (space.cardStack.length === 0) {
+      emptySpaces.push(space);
+    }
+
+  }
+
+  return emptySpaces;
+
+}
+
+
+
 function matchFinder(criteria, array, card) {
-  // 
+  // Looks through an array to find criteria matches - ie. suit/colour. Returns an array of any matches found.
 
   let matches = [];
   for (let item of array) {
@@ -129,7 +150,7 @@ function matchFinder(criteria, array, card) {
 
 
 function highCardFinder(array) {
-  //
+  // Finds the highest numerical cards in a given array and returns the results
 
   let highestCards = [];
   highestCards.push(array[0]);
@@ -145,9 +166,9 @@ function highCardFinder(array) {
     } else {
       console.log(`${card.name} is lower in value than ${highestCards[0].name}!`);
       console.log(highestCards.length);
-      return;
     }
   }
+  return highestCards;
 }
 
 
@@ -160,22 +181,80 @@ function highCardFinder(array) {
 
 */
 
-
 const currentCardObserver = new Observer(drawPile);
+// Observes drawpile clicks
 
 currentCardObserver.subscribe(setHtmlDrawnCard);
+// Subscribes "setHtmlDrawnCard" to be fired every time the draw pile is clicked & the current card is updated.
+
+const matrixClickObserver = new Observer(matrixSpaces);
+
+matrixClickObserver.subscribe(miscTestFunction);
+
+function cardCheckerMatrix(card) {
+  // Checks if drawn card is a number card and fires the appropriate helper functions
+
+    if (card.type === 'royal') {
+  
+    return;
+  
+  } else {
+
+    var newCard = card;
+    var emptySpaces = emptySpaceFinder(matrixSpaces);
+    for (let space of emptySpaces) {
+    
+      clickOnMatrix(space.gridNum, (event) => {
+        var data = event.target.id;
+        matrixClickObserver.notify(data);
+    
+      });
+    }
+
+    // function(newCard, array)
+
+  }
+}
+
+
+
+currentCardObserver.subscribe(cardCheckerMatrix);
+
+
+
+function cardCheckerRoyal(card) {
+  // WIP FUNCTION - DOES NOTHING YET! :)
+  // Checks if drawn card is royal and fires the appropriate helper functions
+  
+  if (card.type != 'royal') {
+  
+    return;
+  
+  } else {
+
+    var newRoyal = card;
+    // function(newRoyal, array)
+
+  }
+}
+
+
+
+currentCardObserver.subscribe(cardCheckerRoyal);
+
+
+
 
 // Define function to check card placement
 
-//currentCardObserver.subscribe([cardPlaceFunction]);
+/*
 
+ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ ____ ____ ____ ____ 
+||H |||T |||M |||L |||       |||C |||l |||i |||c |||k |||       |||F |||u |||n |||c |||t |||i |||o |||n |||s ||
+||__|||__|||__|||__|||_______|||__|||__|||__|||__|||__|||_______|||__|||__|||__|||__|||__|||__|||__|||__|||__||
+|/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|
 
-drawPile.on("click", () => {
-  let data = drawCard(playingDeck);
-  currentCard = data;
-  currentCardObserver.notify(data);
-});
-
+Example past Khyle needed that I'm keeping just in case lol:
 /*
 
 [htmlElement].on("click", () => {
@@ -184,82 +263,21 @@ drawPile.on("click", () => {
 
 */
 
+drawPile.on("click", () => {
 
+  if(currentCard != noCard) {
 
-
-
-/*function spaceClicked(card, space) {
-  // Function 
-
-  spaceUpdate(space, card);
-  drawnCard.attr("src", "imgs/card-space-blank.png");
-  currentCardSubject.state === null;
-}*/
-
-
-
-//currentCardObserver.subscribe(clickableSpaceCss); <-- This should maybe get kicked out of this section & just get called by another function
-
-
-
-function cardSpaceFinderRoys(card) {
-  
-  let validSpaces = [];
-  let currentRoyal = card;
-  if (currentRoyal.type === 'royal') {
-    
-    validSpaces = matchFinder('suit', royalSpaces, currentRoyal);
-    if(validSpaces.length === 0) {
-
-      validSpaces = matchFinder('colour', royalSpaces, currentRoyal);
-      if (validSpaces.length = 0) {
-      
-        validSpaces = royalSpaces;
-      }
-    }
-
-    if (validSpaces[0] == true) {
-
-      console.log(validSpaces[0]);
-      validSpaces = highCardFinder(validSpaces);  
-
-    } else {
-      
-      validSpaces = [...royalSpaces];
-      console.log(validSpaces);
-    }
-
-    for (let space of validSpaces) {
-      console.log(space);
-        clickableSpaceCss(space.gridNum);
-      }
+    return;
   
   } else {
-    return;
+  
+    let data = drawCard(playingDeck);
+    cardRemover(data, playingDeck);
+    currentCard = data;
+    currentCardObserver.notify(data);
+  
   }
-}
-
-
-
-function cardSpaceFinderNums(card) {
-  let validSpaces = [];
-
-  if (card.type === 'number') {
-    for (let space of matrixSpaces) {
-      if (space.cardStack[0] === undefined || card.value >= space.cardStack[0].value) {
-        console.log(card.name);
-        console.log(space);
-        validSpaces.push(space.gridNum);
-      }
-    }
-    for (let validSpace of validSpaces) {
-      clickableSpaceCss(validSpace.gridNum);
-    }
-
-  } else {
-    return;
-  }
-}
+});
 
 
 
@@ -297,29 +315,13 @@ function spaceUpdate(space, card) {
 
 
 
-function cardSpaceClicked(event) {
-  
-  var clickedSpace = String(event.target.id);
-
-  clickedSpaceSubject.setState(clickedSpace);
-}
-
-
-
 function drawCard() {
-
-  //if (currentCardSubject.state === null) { < -- Future conditional when testing is done
 
   var randomCard = getRandomCard(playingDeck);
   return randomCard;
 
-    // Next - clickableSpaceCss(randomCard ? OR - maybe this is an opportunity for observer pattern when randomCard is generated? Hm...)
-  //}
 }
 
-
-
-drawPile.on('click', drawCard);
 
 /*
                 ▄▀▄     ▄▀▄          ____ ____ ____ _________ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____          ▄▀▄     ▄▀▄  
@@ -328,16 +330,16 @@ drawPile.on('click', drawCard);
           █▄▄█ █░░▀░░┬░░▀░░█ █▄▄█   |/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|   █▄▄█ █░░▀░░┬░░▀░░█ █▄▄█   
 */
 
+
+
 //Function setup(setup_numerical_fields[] ✓, numerical_cards[] ✓)
 
 function gameSetup() {
 
   currentCard = noCard;
  
- playingDeck = [...fullDeck]
+  playingDeck = [...fullDeck]
 
- console.log(playingDeck.length);
- 
   for (let matrixSpace of matrixSpacesSetup) {
 
     var randomCard = getRandomCard(numberDeck);
@@ -360,10 +362,18 @@ function gameSetup() {
     }
 }
 
+
+
+
 //Function remove_placed_cards_from_deck(placed_cards[], full_deck[]) – Return playing_deck[]
 // This function is likely not needed any more, since we just remove cards right after we draw them
+
+
+
 for (let space of allSpaces) {
   setImageMatrix(space, space);
 }
 
-gameSetup();
+$(window).on('load', gameSetup);
+
+//gameSetup();
