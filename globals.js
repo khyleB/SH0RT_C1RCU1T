@@ -1,6 +1,3 @@
-/*Hi Avi, I am using the object constructor from my original file with modifications. I'll leave you a note at each line explaining what's going on,
-and you can let me know if any of it seems problematic (Y)*/
-
 // Basic Card Space Constructor
 
 "use strict"; // This enables strict mode which flags uncaught errors. I can omit it or keep it in, whichever seems smarter to you
