@@ -364,16 +364,4 @@ function gameSetup() {
 
 
 
-
-//Function remove_placed_cards_from_deck(placed_cards[], full_deck[]) – Return playing_deck[]
-// This function is likely not needed any more, since we just remove cards right after we draw them
-
-
-
-for (let space of allSpaces) {
-  setImageMatrix(space, space);
-}
-
 $(window).on('load', gameSetup);
-
-//gameSetup();
