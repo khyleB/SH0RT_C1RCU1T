@@ -28,8 +28,8 @@ class MatrixSpace extends Space { // Making an object constructor for the number
 
 		super(gridNum, type, adjSpace);
 		this.adjSpace2 = adjSpace2;
-    this.attackSpace1 = attackSpace1; // royal spaces that will be attacked when you place a card in this space. You can suggest better variable names
-    this.attackSpace2 = attackSpace2;
+	    this.attackSpace1 = attackSpace1; // royal spaces that will be attacked when you place a card in this space. You can suggest better variable names
+	    this.attackSpace2 = attackSpace2;
 
 	}
 }
@@ -369,6 +369,36 @@ const matrixSpaceSelectors = {
 	m8: $('#m8'),
 	m9: $('#m9'),
 };
+
+const royalObjects = {
+	r1: r1,
+	r2: r2,
+	r3: r3,
+	r4: r4,
+	r5: r5,
+	r6: r6,
+	r7: r7,
+	r8: r8,
+	r9: r9,
+	r10: r10,
+	r11: r11,
+	r12:r12,
+};
+
+const matrixObjects = {
+
+	m1: m1,
+	m2: m2,
+	m3: m3,
+	m4: m4,
+	m5: m5,
+	m6: m6,
+	m7: m7,
+	m8: m8,
+	m9: m9,
+};
+
+
 
 const spaceSelectors = {
 	...royalSpaceSelectors,
