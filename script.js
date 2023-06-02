@@ -339,14 +339,16 @@ function checkRoyalSpaces() {
   if (suitMatches.length != 0) {
     var highestValueCard = findHighestValueSuit(suitMatches);
     var arrayMatrixSpaces = [matrixObjects[highestValueCard.gridNum]];
-    makeMatrixSpacesClickable(arrayMatrixSpaces);
+    var arrayRoyalSpaces = convertMatrixToRoyalSpaces(arrayMatrixSpaces);
+    makeMatrixSpacesClickable(arrayRoyalSpaces);
     return;
   }
   else if (colorMatches.length != 0) {
     var highestValueCard = findHighestValueColor(colorMatches);
     console.log(highestValueCard);
     var arrayMatrixSpaces = [matrixObjects[highestValueCard.gridNum]];
-    makeMatrixSpacesClickable(arrayMatrixSpaces);
+    var arrayRoyalSpaces = convertMatrixToRoyalSpaces(arrayMatrixSpaces);
+    makeMatrixSpacesClickable(arrayRoyalSpaces);
     return;
   }
   else {
@@ -356,17 +358,20 @@ function checkRoyalSpaces() {
     if (highestValue.length > 1) {
       var arrayMatrixSpaces = [matrixObjects[highestValue[0].gridNum],matrixObjects[highestValue[1].gridNum]]
       console.log(arrayMatrixSpaces);
-      makeMatrixSpacesClickable(arrayMatrixSpaces);
+      var arrayRoyalSpaces = convertMatrixToRoyalSpaces(arrayMatrixSpaces);
+      makeMatrixSpacesClickable(arrayRoyalSpaces);
       return;
     }
     else {
       var arrayMatrixSpaces = [matrixObjects[highestValue[0].gridNum]]
       console.log(arrayMatrixSpaces);
-      makeMatrixSpacesClickable(arrayMatrixSpaces);
+      var arrayRoyalSpaces = convertMatrixToRoyalSpaces(arrayMatrixSpaces);
+      makeMatrixSpacesClickable(arrayRoyalSpaces);
       return;
     }
 
   }
+
 
 /*
   var suitMatches = matchFinder('suit', adjacentMatrixSpaces, currentCard)
@@ -398,7 +403,22 @@ function checkRoyalSpaces() {
 }
 
 
-
+function convertMatrixToRoyalSpaces (array) {
+  var relevantRoyalSpaces = []
+  for (let space of array) {
+    console.log(space.adjSpace)
+    console.log(space.adjSpace2)
+    console.log(royalObjects[space.adjSpace].cardStack.length)
+    if (space.adjSpace !=  null && royalObjects[space.adjSpace].cardStack.length === 0) {
+      relevantRoyalSpaces.push(royalObjects[space.adjSpace])
+    }
+    if (space.adjSpace2 != null && royalObjects[space.adjSpace2].cardStack.length === 0) {
+      relevantRoyalSpaces.push(royalObjects[space.adjSpace2])
+    }
+  }
+  console.log(relevantRoyalSpaces)
+  return relevantRoyalSpaces
+}
 
 
 
