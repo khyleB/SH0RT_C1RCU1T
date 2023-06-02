@@ -60,7 +60,7 @@ function cardRemover(card, array) {
 function gameOver() {
   // Game over function!
 
-  alert("Draw pile empty - game over!");
+  alert("Game over!");
   // [unsubscribe all observer subscriptions here]
 }
 
@@ -89,16 +89,11 @@ function makeMatrixSpacesClickable(array) {
  // Adds event listener to a given html element. This is not called directly with a signal, so don't worry about the multiple arguments - they are accounted for in line 235
 
   for (let space of array) {
-
-    console.log(space);
-
     let clickableSpace = spaceSelectors[space.gridNum];
-
     clickableSpace.addClass('card-clickable');
-
-  //  clickableSpace.on('click', callback);
+   clickableSpace.on('click', function () {updateSpace(space ,currentCard)});
+   clickableSpace.on('click', function () {setHtmlDrawnCard(noCard); currentCard=noCard; makeMatrixSpacesUnclickable(array); });
   }
-
 }
 
 
@@ -107,13 +102,13 @@ function makeMatrixSpacesUnclickable(array)
   // Removes event listener from a given html element
 
 {
+  for (let space of array) {
+    let clickableSpace = spaceSelectors[space.gridNum];
 
-  let clickableSpace = spaceSelectors[space.gridNum];
+    clickableSpace.removeClass('card-clickable');
 
-  clickableSpace.removeClass('card-clickable');
-
-  clickableSpace.off('click');
-
+    clickableSpace.off('click');
+  }
 }
 
 /*
@@ -136,11 +131,8 @@ function findEmptySpaces(array) {
     if (space.cardStack.length === 0) {
       emptySpaces.push(space);
     }
-
   }
-
   return emptySpaces;
-
 }
 
 
@@ -157,6 +149,8 @@ function findSuitMatches(array, card) {
   return matches;
 }
 
+
+
 function findColorMatches(array, card) {
   // Looks through an array to find criteria matches - ie. suit/colour. Returns an array of any matches found.
 
@@ -168,6 +162,8 @@ function findColorMatches(array, card) {
   }
   return matches;
 }
+
+
 
 function findHighestValueSuit(array) {
   // Finds the highest numerical cards in a given array and returns the results
@@ -184,6 +180,8 @@ function findHighestValueSuit(array) {
   }
   return highestCards[highestCards.length-1];
 }
+
+
 
 function findHighestValueColor (array) {
   let highestCards = [];
@@ -206,6 +204,8 @@ function findHighestValueColor (array) {
   }
 
 
+
+
 function findHighestValue (array) {
   let highestCards = [];
   highestCards.push(array[0]);
@@ -225,6 +225,8 @@ function findHighestValue (array) {
   }
     return highestCards;
 }
+
+
 
 function findTopCards (array) {
   let matches = [];
@@ -269,7 +271,7 @@ function checkCardType(card) {
   
   }
 
-  else if (card.type === 'number') {
+  else if (card.type != 'royal') {
 
     checkNumberSpaces();
 
@@ -311,8 +313,11 @@ function findLowerValueCards() {
 
 function checkRoyalSpaces() {
   // Hi future Avi, please remember that this gets duplicate cards because of royal spaces sharing matrix space
+
+
+  // First we put all royal spaces with no cards into the array emptyRoyalSpaces
   var emptyRoyalSpaces = [];
-    
+  
   for (let space of royalSpaces) {
 
     if (space.cardStack.length === 0) {
@@ -320,22 +325,30 @@ function checkRoyalSpaces() {
     }
   }
   console.log(emptyRoyalSpaces);
+
+
+  // Then we put all the matrix spaces adjacent to the empty royal spaces in the array adjacentMatrixSpaces
   var adjacentMatrixSpaces = [];
 
   for (let space of emptyRoyalSpaces) {
     var adjMatrixSpace = space.adjSpace;
+    // matrixObjects is a dict that we can use to find space objects based on a string 
     adjMatrixSpace = matrixObjects[adjMatrixSpace]
     console.log(adjMatrixSpace);
     if (adjMatrixSpace.cardStack.length != 0) {
       adjacentMatrixSpaces.push(adjMatrixSpace);
     }
   }
-
   console.log(adjacentMatrixSpaces);
+
+
+  // Then we check all the adjacent matrix spaces for top cards with matching suits, color or highest value
   var suitMatches = findSuitMatches(adjacentMatrixSpaces, currentCard);
   var colorMatches = findColorMatches(adjacentMatrixSpaces, currentCard);
   var valueMatches = findTopCards(adjacentMatrixSpaces);
 
+
+  // If there is a suit match on one of the adjacent matrix spaces, highlight its neighboring empty royal spaces
   if (suitMatches.length != 0) {
     var highestValueCard = findHighestValueSuit(suitMatches);
     var arrayMatrixSpaces = [matrixObjects[highestValueCard.gridNum]];
@@ -343,6 +356,10 @@ function checkRoyalSpaces() {
     makeMatrixSpacesClickable(arrayRoyalSpaces);
     return;
   }
+
+
+  // If there is a no suit, but a color match on one of the adjacent matrix spaces, 
+  // highlight its neighboring empty royal spaces
   else if (colorMatches.length != 0) {
     var highestValueCard = findHighestValueColor(colorMatches);
     console.log(highestValueCard);
@@ -351,10 +368,14 @@ function checkRoyalSpaces() {
     makeMatrixSpacesClickable(arrayRoyalSpaces);
     return;
   }
+
+
+  // Else check for the card with the highest value and highlight its neighboring empty royal spaces
   else {
     var valueMatches = findTopCards(adjacentMatrixSpaces);
     var highestValue = findHighestValue(valueMatches);
     console.log(highestValue);
+    // If cards are tied for the highest value, then highlight both of their neighboring empty royal spaces
     if (highestValue.length > 1) {
       var arrayMatrixSpaces = [matrixObjects[highestValue[0].gridNum],matrixObjects[highestValue[1].gridNum]]
       console.log(arrayMatrixSpaces);
@@ -362,6 +383,7 @@ function checkRoyalSpaces() {
       makeMatrixSpacesClickable(arrayRoyalSpaces);
       return;
     }
+    // if there is one card with the highest value, then highlight its neighboring empty royal spaces
     else {
       var arrayMatrixSpaces = [matrixObjects[highestValue[0].gridNum]]
       console.log(arrayMatrixSpaces);
@@ -369,46 +391,15 @@ function checkRoyalSpaces() {
       makeMatrixSpacesClickable(arrayRoyalSpaces);
       return;
     }
-
   }
-
-
-/*
-  var suitMatches = matchFinder('suit', adjacentMatrixSpaces, currentCard)
-  console.log(suitMatches);
-
-
-
-  var colourMatches = matchFinder('colour', adjacentMatrixSpaces, currentCard)
-
-  if (suitMatches.length != 0) {
-    var highestValue = findHighestValue(suitMatches)
-    var highestAdjs = [];
-    for (let adjacentSpace of highestValue.adjSpaces) {
-      if (adjacentSpace != null) {
-        highestAdjs.push(window[adjacentSpace])
-      }
-    }
-    console.log(highestAdjs)
-    makeMatrixSpacesClickable(highestAdjs)
-    return;
-
-  } 
-  else if (suitMatches.length > 1) {
-
-  }
-
-  makeMatrixSpacesClickable(emptyRoyalSpaces)
-*/
 }
 
 
+
+// Takes arrays of matrix spaces and finds their empty adjacent royal spaces
 function convertMatrixToRoyalSpaces (array) {
   var relevantRoyalSpaces = []
   for (let space of array) {
-    console.log(space.adjSpace)
-    console.log(space.adjSpace2)
-    console.log(royalObjects[space.adjSpace].cardStack.length)
     if (space.adjSpace !=  null && royalObjects[space.adjSpace].cardStack.length === 0) {
       relevantRoyalSpaces.push(royalObjects[space.adjSpace])
     }
@@ -508,13 +499,13 @@ Function remove_current_card_from_deck(current_card, playing_deck[])
 
 
 
-function spaceUpdate(space, card) {
+function updateSpace(space, card) {
   let selector = spaceSelectors[space.gridNum];
   card.setGridNum(space.gridNum)
   console.log(card.gridNum)
-  console.log(selector);
   selector.attr("src", card.img);
   space.cardStack.unshift(card);
+  console.log(space.cardStack)
 }
 
 
@@ -549,7 +540,7 @@ function gameSetup() {
       console.log(`New card: ${randomCard.name}`);
     }
 
-    spaceUpdate(matrixSpace, randomCard);
+    updateSpace(matrixSpace, randomCard);
     cardRemover(randomCard, playingDeck);
 
     }
