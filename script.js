@@ -46,6 +46,7 @@ newGameButton.on("click", () => {
 
  function resetData () {
   // Reset the draw pile
+  scoreValue = 0;
   drawPile.removeClass('card-clickable');
   currentCard = noCard;
   setHtmlDrawnCard(currentCard);
@@ -593,10 +594,8 @@ Function remove_current_card_from_deck(current_card, playing_deck[])
 function updateSpace(space, card) {
   let selector = spaceSelectors[space.gridNum];
   card.setGridNum(space.gridNum)
-  console.log(card.gridNum)
   selector.attr("src", card.img);
   space.cardStack.unshift(card);
-  console.log(space.cardStack)
 }
 
 
@@ -678,22 +677,31 @@ function getTargetCard(target) {
 
 
 function evaluateRoyalTarget(attackCards, targetCard) {
-  alert('we evaluted a royal target!')
   if (targetCard.rank === 'jack') {
     attackTarget(attackCards, targetCard);
   }
   else if (targetCard.rank === 'queen') {
-    attackTarget(attackCards, targetCard);
+    if (targetCard.colour === attackCards[0].colour && targetCard.colour === attackCards[1].colour )
+      attackTarget(attackCards, targetCard);
   }
   else {
-    attackTarget(attackCards, targetCard);
-  }
-  
+    if (targetCard.suit === attackCards[0].suit && targetCard.suit === attackCards[1].suit )
+      attackTarget(attackCards, targetCard);
+
+  }  
 }
 
 
 function attackTarget (attackCards, targetCard) {
   if (targetCard.value <= attackCards[0].value + attackCards[1].value) {
-    alert(targetCard.name + " has been killed!");
+    updateSpace(royalObjects[targetCard.gridNum], graveyard);
+    updateScore(targetCard.value);
   }
+}
+
+
+
+function updateScore(value) {
+  scoreValue = scoreValue + value;
+  Score.html(scoreValue);
 }
