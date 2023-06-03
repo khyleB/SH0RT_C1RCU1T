@@ -591,5 +591,10 @@ function resetData () {
 
 
 rulesButton.on('click', () => {
-  rules.toggle('expand-rules');
+  tutorialOverlay.toggle('expand-rules');
+})
+
+
+tutorialButton.on('click', () => {
+  tutorialOverlay.toggle('overlay')
 })

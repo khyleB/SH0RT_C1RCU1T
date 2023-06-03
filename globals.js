@@ -417,6 +417,10 @@ const rulesButton = $("#expand-rules")
 
 const rules = $("#rules")
 
+const tutorialButton = $('#tutorial-button')
+
+const tutorialOverlay = $('#tutorial-overlay')
+
 // This is just to remind myself what I gotta do:
 
 /*Global data:
