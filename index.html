@@ -10,6 +10,7 @@
 	</head>
 
 	<body>
+	
 		<div class="full-gameboard" align="center">
 
 			<div id="deck-of-cards" align="center">
@@ -103,9 +104,17 @@
 
 				<p>This game uses a standard set of playing cards, jokers loaded, to lay out a grid representing the internet and surround it with royal cards representing your targets. The game is over when you kill all the royals with malicious code (win condition) or you can no longer place any cards in the matrix (game over). Click on the deck to your left to draw a card, and read ahead to understand what each card does!</p>
 
-				<button id="expand-rules" class="button">Expand/Collapse Rules</button>
+				<button id="expand-rules" class="button">Show Rules</button>
 
-				<span id="rules" class="collapsed-rules">
+				
+
+			</div>
+	
+			
+		</div>
+		<div id="tutorial-overlay" class="overlay">
+			<div class="tutorial-container">
+				<span id="rules">
 
 					<p><strong>1. Placing Number Cards in Matrix</strong> - If the card has a value of 2-10, this is one of the programs in your hack, and you must place it on an empty space or one of the cards in the matrix to form a stack. It can go on any card with the same or lower value.</p>
 
@@ -115,22 +124,24 @@
 
 					<p>When you place a card in the matrix opposite a royal – so that there are two cards in a row between the stack where you placed a card and a royal – those two cards become an overload of malicious code that you are firing at the royal through the matrix. The sum of the two card values is the overload’s power - if the sum of the overload is equal to or greater than the health of the royal & meets the kill condition, the royal is killed.</p>
 					
-					<p><strong>4. Pile Resets</strong> - If the card is an ace or joker, these will reset the pile in different ways!. When you reset a stack, it is removed and shuffled back into the deck, then the drawn reset card is placed where that stack was in the matrix. This is an important tactic so you don't run out of spaces to play cards!</p>
+					<p><strong>4. Pile Resets</strong> - Aces or jokers, will reset cardstacks in different ways!.
+						 When you reset a stack, it is removed and shuffled back into the deck. This is an important tactic so you don't run out of spaces to play cards!</p>
 
-					<p>Aces allow you to reset any pile, jokers automatically target the pile(s) with the lowest top card(s).</p>
+					<p>Aces allow you to reset any stack of cards. <br>
+						 Jokers automatically target the pile(s) with the lowest top card(s).</p>
 
-					<p><strong>5. Blowing Up Your Computer</strong> - If you have too many high-value cards in your matrix, sometimes you will be unable to place a card that you draw. This constitutes a grievious coding error, and one that will blow up your computer and, by extension, you! This will result in a game over. :(</p>
+					<p><strong>5. Game Over</strong> - If every card on the matrix is higher than your current card, you will be unable to place it.<br>
+						 This constitutes a grievious coding error, and will blow up your computer and, by extension, you! :(</p>
 
 				</span>
-
+				<button id="tutorial-button" class="button tutorial-button">Understood</button>
 			</div>
-
 		</div>
-		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 		<script type="text/javascript" src="observer-pattern-setup.js"></script>
 		<script type="text/javascript" src="globals.js"></script>
 		<script type="text/javascript" src="script.js"></script>
 
 	</body>
+	
 </html>
