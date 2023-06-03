@@ -411,6 +411,12 @@ const drawnCard = $("#drawn-card");
 
 const drawPile = $("#draw-pile");
 
+const newGameButton = $("#new-game")
+
+const rulesButton = $("#expand-rules")
+
+const rules = $("#rules")
+
 // This is just to remind myself what I gotta do:
 
 /*Global data:
