@@ -1,5 +1,113 @@
 "use strict";
 
+
+// To be fixed: Replace all 2s, since they're slightly larger than the other playing cards.
+// To be fixed: Replace the odd looking 5.
+// To be added: Tutorial screen to replace the tutorial bar.
+// BUG: I was allowed to place the 4 of clubs over the 5 of diamonds. The 4 of clubs was also added at the end of 
+// the card stack not the beginning like it's supposed to.
+// Update it seems its the mislabelled 5 of clubs. I think we never merged your new image to GitHub.
+
+
+
+for (let space of allSpaces) {
+  setImageMatrix(space, space);
+}
+
+$(window).on('load', gameSetup);
+
+
+
+// Shows the tutorial screen
+rulesButton.on('click', () => {
+  tutorialOverlay.toggle('expand-rules');
+})
+
+
+
+// Hides the tutorial screen
+tutorialButton.on('click', () => {
+  tutorialOverlay.toggle('overlay')
+})
+
+
+// Resets game state
+newGameButton.on("click", () => {
+
+  // Resets all data to be like the beginning of the game
+  resetData(); 
+
+  // Repopulates the playingDeck with fullDeck
+  gameSetup();
+  
+ });
+ 
+
+
+ function resetData () {
+  // Reset the draw pile
+  drawPile.removeClass('card-clickable');
+  currentCard = noCard;
+  setHtmlDrawnCard(currentCard);
+
+  // Reset all spaces
+  for (let space of allSpaces) {
+    // How does this function work? It needs a ard argument, but we pass it 2 space objects.
+    setImageMatrix(space, space);
+    space.setImg('imgs/card-space-blank.png');
+    space.cardStack = [];
+    makeMatrixSpacesUnclickable(allSpaces)
+  }
+
+  // Reset all cards
+  for (let card of fullDeck) {
+    card.gridNum = null;
+    // How do you reset the health/value of the royal cards?
+  }
+}
+
+
+
+
+/*
+                ▄▀▄     ▄▀▄          ____ ____ ____ _________ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____          ▄▀▄     ▄▀▄  
+               ▄█░░▀▀▀▀▀░░█▄        ||N |||e |||w |||       |||G |||a |||m |||e |||       |||L |||o |||o |||p |||! ||        ▄█░░▀▀▀▀▀░░█▄        
+           ▄▄  █░░░░░░░░░░░█  ▄▄    ||__|||__|||__|||_______|||__|||__|||__|||__|||_______|||__|||__|||__|||__|||__||    ▄▄  █░░░░░░░░░░░█  ▄▄    
+          █▄▄█ █░░▀░░┬░░▀░░█ █▄▄█   |/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|   █▄▄█ █░░▀░░┬░░▀░░█ █▄▄█   
+*/
+
+
+
+//Function setup(setup_numerical_fields[] ✓, numerical_cards[] ✓)
+
+function gameSetup() {
+ 
+  playingDeck = [...fullDeck]
+
+  for (let matrixSpace of matrixSpacesSetup) {
+
+    var randomCard = getRandomCard(numberDeck);
+    let randomCardIndex = playingDeck.indexOf(randomCard);
+    console.log(randomCardIndex);
+
+    while(randomCardIndex === -1) {
+      console.log(`Double card: ${randomCard.name}. Getting new card!`)
+      randomCard = getRandomCard(numberDeck);
+      randomCardIndex = playingDeck.indexOf(randomCard);
+      console.log(`New card: ${randomCard.name}`);
+    }
+
+    updateSpace(matrixSpace, randomCard);
+    cardRemover(randomCard, playingDeck);
+
+    }
+    drawPile.addClass('card-clickable')
+}
+
+
+
+
+
 /*
  ____ ____ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ ____ ____ ____ ____ 
 ||H |||e |||l |||p |||e |||r |||       |||F |||u |||n |||c |||t |||i |||o |||n |||s ||
@@ -8,39 +116,28 @@
 
 // Functions with a somewhat general purpose that will be called by other functions. Not tied directly to any observers.*/
 
-// To be fixed: Replace all 2s, since they're slightly larger than the other playing cards.
-// To be fixed: Replace the odd looking 5.
-// To be added: Tutorial screen to replace the tutorial bar.
-
-
-// @K.Best: Does this for loop run when the page is loaded?
-for (let space of allSpaces) {
-  setImageMatrix(space, space);
-}
-
-$(window).on('load', gameSetup);
-
-
-function miscTestFunction(data) {
-  // Obviously will be deleted when all functions are in place, just helps me test my signals and click events! :D
-
-  alert(data + " has been passed into me, your test function! :D");
-
-}
-  
 
 
 function getRandomCard(array) {
   // Rolls a random number and gets the card at that index
 
   if(array.length === 0) {
-    gameOver();
+    gameOver("Game Over - You're out of cards!");
     return;
   }
 
   let randCardIndex = Math.floor(Math.random() * (array.length));
   return array[randCardIndex];
 
+}
+
+
+
+function gameOver(message) {
+  // Game over function!
+
+  alert(message);
+  // [unsubscribe all observer subscriptions here]
 }
 
 
@@ -62,17 +159,8 @@ function cardRemover(card, array) {
 
   if(array.length === 0) {
     drawPile.attr("src", "imgs/card-space-blank.png");
-    gameOver();
+    gameOver("Game Over - You're out of cards!");
   }
-}
-
-
-
-function gameOver() {
-  // Game over function!
-
-  alert("Game over!");
-  // [unsubscribe all observer subscriptions here]
 }
 
 
@@ -104,6 +192,7 @@ function makeMatrixSpacesClickable(array) {
     clickableSpace.addClass('card-clickable');
    clickableSpace.on('click', function () {updateSpace(space ,currentCard)});
    clickableSpace.on('click', function () {setHtmlDrawnCard(noCard); currentCard=noCard; makeMatrixSpacesUnclickable(array); drawPile.addClass('card-clickable'); });
+   clickableSpace.on('click', function () {attackRoyal(space)});
   }
 }
 
@@ -121,6 +210,17 @@ function makeMatrixSpacesUnclickable(array)
     clickableSpace.off('click');
   }
 }
+
+
+
+function miscTestFunction(data) {
+  // Obviously will be deleted when all functions are in place, just helps me test my signals and click events! :D
+
+  alert(data + " has been passed into me, your test function! :D");
+
+}
+  
+
 
 /*
  ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ ____ ____ ____ ____ 
@@ -297,7 +397,7 @@ function checkNumberSpaces() {
     var validSpaces = findLowerValueCards(currentCard);
 
     if (validSpaces.length === 0) {
-      gameOver()
+      gameOver("Game Over - You can't play your card!")
     
     } else {
       makeMatrixSpacesClickable(validSpaces)
@@ -425,26 +525,6 @@ function convertMatrixToRoyalSpaces (array) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 currentCardObserver.subscribe(checkCardType);
 
 
@@ -521,80 +601,99 @@ function updateSpace(space, card) {
 
 
 
-/*
-                ▄▀▄     ▄▀▄          ____ ____ ____ _________ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____          ▄▀▄     ▄▀▄  
-               ▄█░░▀▀▀▀▀░░█▄        ||N |||e |||w |||       |||G |||a |||m |||e |||       |||L |||o |||o |||p |||! ||        ▄█░░▀▀▀▀▀░░█▄        
-           ▄▄  █░░░░░░░░░░░█  ▄▄    ||__|||__|||__|||_______|||__|||__|||__|||__|||_______|||__|||__|||__|||__|||__||    ▄▄  █░░░░░░░░░░░█  ▄▄    
-          █▄▄█ █░░▀░░┬░░▀░░█ █▄▄█   |/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|   █▄▄█ █░░▀░░┬░░▀░░█ █▄▄█   
-*/
+//checks if a royal is present and attacks
+function attackRoyal (space) {
 
-
-
-//Function setup(setup_numerical_fields[] ✓, numerical_cards[] ✓)
-
-function gameSetup() {
- 
-  playingDeck = [...fullDeck]
-
-  for (let matrixSpace of matrixSpacesSetup) {
-
-    var randomCard = getRandomCard(numberDeck);
-    let randomCardIndex = playingDeck.indexOf(randomCard);
-    console.log(randomCardIndex);
-
-    while(randomCardIndex === -1) {
-      console.log(`Double card: ${randomCard.name}. Getting new card!`)
-      randomCard = getRandomCard(numberDeck);
-      randomCardIndex = playingDeck.indexOf(randomCard);
-      console.log(`New card: ${randomCard.name}`);
-    }
-
-    updateSpace(matrixSpace, randomCard);
-    cardRemover(randomCard, playingDeck);
-
-    }
-    drawPile.addClass('card-clickable')
-}
-
-
-
-newGameButton.on("click", () => {
-
- // Resets all data to be like the beginning of the game
- resetData(); 
- // Repopulates the playingDeck with fullDeck
- gameSetup();
- 
-});
-
-function resetData () {
-  // Reset the draw pile
-  drawPile.removeClass('card-clickable');
-  currentCard = noCard;
-  setHtmlDrawnCard(currentCard);
-
-  // Reset all spaces
-  for (let space of allSpaces) {
-    // How does this function work? It needs a ard argument, but we pass it 2 space objects.
-    setImageMatrix(space, space);
-    space.setImg('imgs/card-space-blank.png');
-    space.cardStack = [];
-    makeMatrixSpacesUnclickable(allSpaces)
+  var royalTargets = []
+  if (space.type != 'royal-space') {
+    royalTargets = getAttackTargets(space);
+    console.log(royalTargets);
+  }
+  else {
+    return;
   }
 
-  // Reset all cards
-  for (let card of fullDeck) {
-    card.gridNum = null;
-    // How do you reset the health/value of the royal cards?
+  // check that there is at least 1 royal target
+  if (royalTargets.length != 0) {
+    var attackCards = [];
+    var targetCard;
+
+    // we're checking one royal at a time
+    for (let target of royalTargets) {
+      // target is a royal space and the function returns an array with the attacker cards
+      attackCards = getAttackers(target);
+      targetCard = getTargetCard(target);
+       //check if both attack cards are present
+      console.log(attackCards)
+      if (attackCards.length === 2) {
+        evaluateRoyalTarget(attackCards, targetCard )
+      }
+      else {
+        return;
+      }
+    }
+
+  // if there ar no royal targets end the function
+  }
+  else {
+    return;
   }
 }
 
 
-rulesButton.on('click', () => {
-  tutorialOverlay.toggle('expand-rules');
-})
+// returns an array with the royal space objects to attack
+function getAttackTargets (space) {
+  var attackArray = [];
+  if (space.attackSpace1 != null && royalObjects[space.attackSpace1].cardStack != 0 ) {
+    attackArray.push(royalObjects[space.attackSpace1]);
+  }
+  if (space.attackSpace2 != null && royalObjects[space.attackSpace2].cardStack != 0) {
+    attackArray.push(royalObjects[space.attackSpace2]);
+  }
+  console.log(attackArray)
+  return attackArray;
+}
 
 
-tutorialButton.on('click', () => {
-  tutorialOverlay.toggle('overlay')
-})
+// returns all number cards involved in attack
+function getAttackers (target) {
+  var attackers = [matrixObjects[target.attacker1], matrixObjects[target.attacker2]]
+  var attackerCards = [];
+  for (let attacker of attackers) {
+
+    if (attacker.cardStack.length > 0 ) {
+      attackerCards.push(attacker.cardStack[0])
+    }
+  }
+  return attackerCards;
+}
+
+
+
+function getTargetCard(target) {
+  return target.cardStack[0];
+}
+
+
+
+
+function evaluateRoyalTarget(attackCards, targetCard) {
+  alert('we evaluted a royal target!')
+  if (targetCard.rank === 'jack') {
+    attackTarget(attackCards, targetCard);
+  }
+  else if (targetCard.rank === 'queen') {
+    attackTarget(attackCards, targetCard);
+  }
+  else {
+    attackTarget(attackCards, targetCard);
+  }
+  
+}
+
+
+function attackTarget (attackCards, targetCard) {
+  if (targetCard.value <= attackCards[0].value + attackCards[1].value) {
+    alert(targetCard.name + " has been killed!");
+  }
+}

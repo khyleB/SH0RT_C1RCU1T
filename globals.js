@@ -34,51 +34,60 @@ class MatrixSpace extends Space { // Making an object constructor for the number
 	}
 }
 
+class RoyalSpace extends Space {
+	constructor(gridNum, type, adjSpace, attacker1, attacker2 ) {
+
+	super(gridNum, type, adjSpace);
+	this.attacker1 = attacker1;
+	this.attacker2 = attacker2;
+	}
+}
+
 //          ---------- Royal space global variables ----------          
 
-const r1 = new Space('r1', 'royal-space', 'm1');
+const r1 = new RoyalSpace('r1', 'royal-space', 'm1', 'm1' ,'m4');
 
-const r2 = new Space('r2', 'royal-space', 'm2');
+const r2 = new RoyalSpace('r2', 'royal-space', 'm2', 'm2' ,'m5');
 
-const r3 = new Space('r3', 'royal-space', 'm3');
+const r3 = new RoyalSpace('r3', 'royal-space', 'm3', 'm3' ,'m6');
 
-const r4 = new Space('r4', 'royal-space', 'm3');
+const r4 = new RoyalSpace('r4', 'royal-space', 'm3', 'm3' ,'m2');
 
-const r5 = new Space('r5', 'royal-space', 'm6');
+const r5 = new RoyalSpace('r5', 'royal-space', 'm6', 'm6' ,'m5');
 
-const r6 = new Space('r6', 'royal-space', 'm9');
+const r6 = new RoyalSpace('r6', 'royal-space', 'm9', 'm9' ,'m8');
 
-const r7 = new Space('r7', 'royal-space', 'm9');
+const r7 = new RoyalSpace('r7', 'royal-space', 'm9', 'm9' ,'m6');
 
-const r8 = new Space('r8', 'royal-space', 'm8');
+const r8 = new RoyalSpace('r8', 'royal-space', 'm8', 'm8' ,'m5');
 
-const r9 = new Space('r9', 'royal-space', 'm7');
+const r9 = new RoyalSpace('r9', 'royal-space', 'm7', 'm7' ,'m4');
 
-const r10 = new Space('r10', 'royal-space', 'm7');
+const r10 = new RoyalSpace('r10', 'royal-space', 'm7', 'm7' ,'m8');
 
-const r11 = new Space('r11', 'royal-space', 'm4');
+const r11 = new RoyalSpace('r11', 'royal-space', 'm4', 'm4' ,'m5');
 
-const r12 = new Space('r12', 'royal-space', 'm1');
+const r12 = new RoyalSpace('r12', 'royal-space', 'm1', 'm1' ,'m2');
 
 //          ---------- Number space global constiables ----------          
 
-const m1 = new MatrixSpace('m1', 'number', 'r1', 'r12');
+const m1 = new MatrixSpace('m1', 'number', 'r1', 'r12', 'r4' ,'r9');
 
-const m2 = new MatrixSpace('m2', 'number', 'r2', null);
+const m2 = new MatrixSpace('m2', 'number', 'r2', null, 'r8');
 
-const m3 = new MatrixSpace('m3', 'number', 'r3', 'r4');
+const m3 = new MatrixSpace('m3', 'number', 'r3', 'r4', 'r7', 'r12');
 
-const m4 = new MatrixSpace('m4', 'number', 'r11', null);
+const m4 = new MatrixSpace('m4', 'number', 'r11', null, 'r5');
 
 const m5 = new MatrixSpace('m5', 'number', null, null);
 
-const m6 = new MatrixSpace('m6', 'number', 'r5', null);
+const m6 = new MatrixSpace('m6', 'number', 'r5', null, 'r11');
 
-const m7 = new MatrixSpace('m7', 'number', 'r9', 'r10');
+const m7 = new MatrixSpace('m7', 'number', 'r9', 'r10', 'r1', 'r6');
 
-const m8 = new MatrixSpace('m8', 'number', 'r8', null);
+const m8 = new MatrixSpace('m8', 'number', 'r8', null, 'r2');
 
-const m9 = new MatrixSpace('m9', 'number', 'r6', 'r7');
+const m9 = new MatrixSpace('m9', 'number', 'r6', 'r7', 'r3', 'r10');
 
 //          ---------- Space Array Const Setup ----------          
 
@@ -119,40 +128,41 @@ const noCard = new Card('imgs/card-space-blank.png', 'None', -1);
 /*     ---------- ~~~ Royal card constructor ~~~ ----------     */
 
 class Royal extends Card {
-	constructor(img, name, value, suit, colour, type='royal') {
+	constructor(img, name, value, suit, colour, rank, type='royal') {
 
 		super(img, name, value);
 		this.suit = suit;
 		this.colour = colour;
+		this.rank = rank;
 		this.type = type;
 	}
 }
 
 /*               -------------------- Royal Object Creation --------------------               */
 
-const spadeKing = new Royal('imgs/spade-king.png', 'King of Spades', 13, 'spade', 'black');
+const spadeKing = new Royal('imgs/spade-king.png', 'King of Spades', 13, 'spade', 'black', 'king');
 
-const spadeQueen = new Royal('imgs/spade-queen.png', 'Queen of Spades', 12, 'spade', 'black');
+const spadeQueen = new Royal('imgs/spade-queen.png', 'Queen of Spades', 12, 'spade', 'black', 'queen');
 
-const spadeJack = new Royal('imgs/spade-jack.png', 'Jack of Spades', 11, 'spade', 'black');
+const spadeJack = new Royal('imgs/spade-jack.png', 'Jack of Spades', 11, 'spade', 'black', 'jack');
 
-const heartKing = new Royal('imgs/heart-king.png', 'King of Hearts', 13, 'heart', 'red');
+const heartKing = new Royal('imgs/heart-king.png', 'King of Hearts', 13, 'heart', 'red', 'king');
 
-const heartQueen = new Royal('imgs/heart-queen.png', 'Queen of Hearts', 12, 'heart', 'red');
+const heartQueen = new Royal('imgs/heart-queen.png', 'Queen of Hearts', 12, 'heart', 'red', 'queen');
 
-const heartJack = new Royal('imgs/heart-jack.png', 'Jack of Hearts', 11, 'heart', 'red');
+const heartJack = new Royal('imgs/heart-jack.png', 'Jack of Hearts', 11, 'heart', 'red', 'jack');
 
-const diamondKing = new Royal('imgs/diamond-king.png', 'King of Diamonds', 13, 'diamond', 'red');
+const diamondKing = new Royal('imgs/diamond-king.png', 'King of Diamonds', 13, 'diamond', 'red', 'king');
 
-const diamondQueen = new Royal('imgs/diamond-queen.png', 'Queen of Diamonds', 12, 'diamond', 'red');
+const diamondQueen = new Royal('imgs/diamond-queen.png', 'Queen of Diamonds', 12, 'diamond', 'red', 'queen');
 
-const diamondJack = new Royal('imgs/diamond-jack.png', 'Jack of Diamonds', 11, 'diamond', 'red');
+const diamondJack = new Royal('imgs/diamond-jack.png', 'Jack of Diamonds', 11, 'diamond', 'red', 'jack');
 
-const clubKing = new Royal('imgs/club-king.png', 'King of Clubs', 13, 'club', 'black');
+const clubKing = new Royal('imgs/club-king.png', 'King of Clubs', 13, 'club', 'black', 'king');
 
-const clubQueen = new Royal('imgs/club-queen.png', 'Queen of Clubs', 12, 'club', 'black');
+const clubQueen = new Royal('imgs/club-queen.png', 'Queen of Clubs', 12, 'club', 'black', 'queen');
 
-const clubJack = new Royal('imgs/club-jack.png', 'Jack of Clubs', 11, 'club', 'black');
+const clubJack = new Royal('imgs/club-jack.png', 'Jack of Clubs', 11, 'club', 'black', 'jack');
 
 //Spade card constructor
 
