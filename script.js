@@ -8,6 +8,17 @@
 
 // Functions with a somewhat general purpose that will be called by other functions. Not tied directly to any observers.*/
 
+// To be fixed: Replace all 2s, since they're slightly larger than the other playing cards.
+// To be fixed: Replace the odd looking 5.
+// To be added: Tutorial screen to replace the tutorial bar.
+
+
+// @K.Best: Does this for loop run when the page is loaded?
+for (let space of allSpaces) {
+  setImageMatrix(space, space);
+}
+
+$(window).on('load', gameSetup);
 
 
 function miscTestFunction(data) {
@@ -92,7 +103,7 @@ function makeMatrixSpacesClickable(array) {
     let clickableSpace = spaceSelectors[space.gridNum];
     clickableSpace.addClass('card-clickable');
    clickableSpace.on('click', function () {updateSpace(space ,currentCard)});
-   clickableSpace.on('click', function () {setHtmlDrawnCard(noCard); currentCard=noCard; makeMatrixSpacesUnclickable(array); });
+   clickableSpace.on('click', function () {setHtmlDrawnCard(noCard); currentCard=noCard; makeMatrixSpacesUnclickable(array); drawPile.addClass('card-clickable'); });
   }
 }
 
@@ -459,11 +470,11 @@ Example past Khyle needed that I'm keeping just in case lol:
 drawPile.on("click", () => {
 
   if(currentCard != noCard) {
-
+    
     return;
   
   } else {
-  
+    drawPile.removeClass('card-clickable')
     let data = drawCard(playingDeck);
     cardRemover(data, playingDeck);
     currentCard = data;
@@ -522,8 +533,6 @@ function updateSpace(space, card) {
 //Function setup(setup_numerical_fields[] ✓, numerical_cards[] ✓)
 
 function gameSetup() {
-
-  currentCard = noCard;
  
   playingDeck = [...fullDeck]
 
@@ -544,10 +553,43 @@ function gameSetup() {
     cardRemover(randomCard, playingDeck);
 
     }
+    drawPile.addClass('card-clickable')
 }
 
-for (let space of allSpaces) {
-  setImageMatrix(space, space);
+
+
+newGameButton.on("click", () => {
+
+ // Resets all data to be like the beginning of the game
+ resetData(); 
+ // Repopulates the playingDeck with fullDeck
+ gameSetup();
+ 
+});
+
+function resetData () {
+  // Reset the draw pile
+  drawPile.removeClass('card-clickable');
+  currentCard = noCard;
+  setHtmlDrawnCard(currentCard);
+
+  // Reset all spaces
+  for (let space of allSpaces) {
+    // How does this function work? It needs a ard argument, but we pass it 2 space objects.
+    setImageMatrix(space, space);
+    space.setImg('imgs/card-space-blank.png');
+    space.cardStack = [];
+    makeMatrixSpacesUnclickable(allSpaces)
+  }
+
+  // Reset all cards
+  for (let card of fullDeck) {
+    card.gridNum = null;
+    // How do you reset the health/value of the royal cards?
+  }
 }
 
-$(window).on('load', gameSetup);
+
+rulesButton.on('click', () => {
+  rules.toggle('expand-rules');
+})
