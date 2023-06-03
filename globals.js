@@ -123,6 +123,7 @@ class Card {
 }
 
 const noCard = new Card('imgs/card-space-blank.png', 'None', -1);
+const graveyard = new Card ('imgs/dead-royal.png' , 'Dead Royal', -2);
 
 
 /*     ---------- ~~~ Royal card constructor ~~~ ----------     */
@@ -421,15 +422,19 @@ const drawnCard = $("#drawn-card");
 
 const drawPile = $("#draw-pile");
 
-const newGameButton = $("#new-game")
+const newGameButton = $("#new-game");
 
-const rulesButton = $("#expand-rules")
+const rulesButton = $("#expand-rules");
 
-const rules = $("#rules")
+const rules = $("#rules");
 
-const tutorialButton = $('#tutorial-button')
+const tutorialButton = $('#tutorial-button');
 
-const tutorialOverlay = $('#tutorial-overlay')
+const tutorialOverlay = $('#tutorial-overlay');
+
+var scoreValue = 0;
+
+const Score = $('#score')
 
 // This is just to remind myself what I gotta do:
 
