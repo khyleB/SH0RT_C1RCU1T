@@ -3,6 +3,12 @@
   src: url("./VT323.ttf");
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-image: url("imgs/soli-bg.png");
   background-repeat: repeat;
@@ -30,11 +36,16 @@ p {
 
 }
 
+.mobile-rules {
+  display: none;
+}
+
 .tagline {
-  padding: 0 0 15px 0;
-  line-height: 0px;
+  margin-bottom: 35px;
+  line-height: 115%;
   color: white;
   font-style: italic;
+  overflow: wrap;
 }
 
 .tagline a {
@@ -45,29 +56,100 @@ img {
   border: none;
 }
 
+
+.headline {
+  text-align: center;
+}
+
 .full-gameboard {
   display: flex;
-  margin-bottom: 0 !important;
+  margin: 15px;
 }
 
-div {
-  margin: 15px;
-  flex-grow: 1;
-  flex-shrink: 1;
-}
+@media screen and (max-width:1000px) {
+  .full-gameboard {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #deck-of-cards {
+    display: flex;
+    flex-direction: row;
+    width: 100% !important;
+    justify-content: center;
+  }
+  #instructions {
+    display: none !important;
+  }
+  #game-grid {
+    display: flex;
+    flex-direction: row;
+    width: 100% !important;
+    justify-content: center;
+  }
+  .mobile-rules {
+    display: block;
+  }
+  #score-keeper {
+    margin-left: 12px;
+  }
+  .card-clickable {
+    margin: 1px !important;
+    background-image: none !important;
+    background: rgba(172, 255, 48, 0.733) !important;
+  }
+ }
+
+
+ @media screen and (max-width:550px) {
+  img {
+    width: 80px;
+  }
+  .card-clickable {
+    margin: 1px !important;
+    background-image: none !important;
+    background: rgba(172, 255, 48, 0.733) !important;
+  }
+ }
+
+
+ @media screen and (max-width:425px) {
+  img {
+    width: 60px !important;
+  }
+  .card-clickable {
+    
+    background-image: none !important;
+    background: rgba(172, 255, 48, 0.733) !important;
+  }
+  :root {
+    font-size: 12px !important;
+  }
+ }
 
 #instructions {
-  display: inline-block;
-  height: fit-content;
-  max-width: 34%;
+  display: block;
   padding: 10px 35px 35px 35px;
+  width: 30%;
+  max-height: 90vh;
   background-color: rgba(167, 255, 49, 0.6);
   border: 2px solid black;
   border-radius: 25px;
+  overflow-y: scroll;
+
+}
+
+#game-grid {
+  width: 60%;
+
+}
+
+#deck-of-cards {
+  width: 200px;
 }
 
 #instructions p {
-  margin: 15px
+  margin: 0;
 }
 
 .collapsed-rules {
@@ -106,15 +188,16 @@ div {
   top: 0;
   left: 0;
   min-height: 100%;
-  min-width: 100%;
+  width: 100vw;
   background-color: rgb(0, 0, 0);
   margin: 0;
   display: flex;
+  justify-content: center;
 }
 
 .tutorial-container {
-  min-width: 85%;
-  min-height: 85%;
+  width: 85%;
+  height: 85%;
   background-color: rgb(0, 0, 0);
   padding: 3%;
   display: flex;
@@ -124,7 +207,6 @@ div {
 }
 
 .tutorial-button {
-  width: 12%;
   height: 5%;
   display: flex;
   align-items: center;
