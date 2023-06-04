@@ -189,11 +189,12 @@ function makeMatrixSpacesClickable(array) {
  // Adds event listener to a given html element. This is not called directly with a signal, so don't worry about the multiple arguments - they are accounted for in line 235
 
   for (let space of array) {
-    let clickableSpace = spaceSelectors[space.gridNum];
-    clickableSpace.addClass('card-clickable');
+   let clickableSpace = spaceSelectors[space.gridNum];
+   clickableSpace.addClass('card-clickable');
+   clickableSpace.on('click', function () {resetCardStack(space)});
    clickableSpace.on('click', function () {updateSpace(space ,currentCard)});
-   clickableSpace.on('click', function () {setHtmlDrawnCard(noCard); currentCard=noCard; makeMatrixSpacesUnclickable(array); drawPile.addClass('card-clickable'); });
    clickableSpace.on('click', function () {attackRoyal(space)});
+   clickableSpace.on('click', function () {setHtmlDrawnCard(noCard); currentCard=noCard; makeMatrixSpacesUnclickable(array); drawPile.addClass('card-clickable'); });
   }
 }
 
@@ -340,6 +341,32 @@ function findHighestValue (array) {
 
 
 
+// takes an array of cards
+function findLowestValue(array) {
+  let lowestCards = [array[0]];
+  for (let card of array) {
+    if (card.value === lowestCards[lowestCards.length-1].value) {
+      lowestCards.push(card);
+      console.log(lowestCards)
+    }
+    else if (card.value < lowestCards[lowestCards.length-1].value) {
+      lowestCards = [];
+      lowestCards.push(card);
+      console.log(lowestCards)
+    }
+  }
+  console.log(lowestCards);
+
+  let lowestCardSpaces = [];
+  for (let space of lowestCards) {
+    lowestCardSpaces.push(matrixObjects[space.gridNum]);
+  }
+  return lowestCardSpaces;
+}
+
+
+
+
 function findTopCards (array) {
   let matches = [];
   for (let item of array) {
@@ -383,10 +410,20 @@ function checkCardType(card) {
   
   }
 
-  else if (card.type != 'royal') {
+  else if (card.type === 'number') {
 
     checkNumberSpaces();
 
+  }
+
+  else if (card.type === 'ace') {
+
+    checkAceSpaces();
+
+  }
+
+  else {
+    checkJokerSpaces();
   }
 }
 
@@ -524,7 +561,22 @@ function convertMatrixToRoyalSpaces (array) {
 }
 
 
+function checkAceSpaces() {
+  makeMatrixSpacesClickable(matrixSpaces);
+}
 
+
+function checkJokerSpaces() {
+  var topCards = []
+  for (let space of matrixSpaces) {
+    if (space.cardStack.length != 0) {
+      topCards.push(space.cardStack[0]);
+    } 
+  }
+  console.log(topCards)
+  var jokerSpaces = findLowestValue(topCards);
+  makeMatrixSpacesClickable(jokerSpaces);
+}
 
 currentCardObserver.subscribe(checkCardType);
 
@@ -696,6 +748,25 @@ function attackTarget (attackCards, targetCard) {
   if (targetCard.value <= attackCards[0].value + attackCards[1].value) {
     updateSpace(royalObjects[targetCard.gridNum], graveyard);
     updateScore(targetCard.value);
+  }
+}
+
+
+
+function resetCardStack (space) {
+  if (space.type != 'royal-space' && currentCard.type === 'joker' || space.type != 'royal-space' && currentCard.type === 'ace') {
+    addCardsToDeck(space.cardStack);
+    console.log(space.cardStack);
+    space.cardStack.length = 0;
+  }
+}
+
+
+
+function addCardsToDeck(cardStack) {
+  for (let card of cardStack) {
+    alert(card.name + ' has been added to the deck.')
+    playingDeck.push(card);
   }
 }
 
