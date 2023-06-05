@@ -11,15 +11,18 @@
 
 	<body>
 		<div class="headline">
-		<h1>MATR1X 0VERL0AD</h1>
-		
-		<p class="tagline">Based on the card game by <a href="https://notwriting.itch.io/matrix-overload">Michael Elliott</a>, coded by <a href="https://kbest.ca">K. Best</a> & <a href="https://github.com/Simon-G1">Simon G.</a></p>
-	</div>
-		<div class="full-gameboard" align="center">
+			<h1>MATR1X 0VERL0AD</h1>
+			
+			<p class="tagline">Based on the card game by <a href="https://notwriting.itch.io/matrix-overload">Michael Elliott</a>, coded by <a href="https://kbest.ca">K. Best</a> & <a href="https://github.com/Simon-G1">Simon G.</a></p>
+		</div>
 
-			<div id="deck-of-cards" align="center">
+		<div class="full-gameboard">
+
+		<!--- Drawpile & Deck Div --->
+
+			<div id="deck-of-cards">
 				
-				<div align="center">
+				<div class="small-flex">
 				
 					<h3>Draw Pile</h3>
 				
@@ -29,33 +32,33 @@
 
 				
 
-				<div align="center">
+				<div class="small-flex">
 				
 					<img id="drawn-card" src="imgs/card-space-blank.png">
 				
-					<h3>Current Card:</h3>
-					<h4 id="drawn-text">None</h4>
+					<h3 class="hidden-for-mobile">Current Card:</h3>
+					<p class="larger-text hidden-for-mobile" id="drawn-text">None</p>
 				
 				</div>
 
-				<div align="center">
+				<div class="small-flex">
 
 					<button class="button" id="new-game">New Game</button>
 					<br><br>
 					<button id="expand-rules" class="button mobile-rules">Show Rules</button>
 				
 				</div>
-				<div id="score-keeper" align="center">
+				<div id="score-keeper" class="small-flex">
 				
 					<h3>Score:</h3>
-					<h3 id="score">0</h3>
+					<p class="larger-text">0</p>
 				
 				</div>
 			</div>
 
-			<div id="game-grid" align="center">
+	<!--- Matrix Grid Div --->
 
-
+			<div id="game-grid">
 
 				<table id="matrix">
 					<tr>
@@ -101,20 +104,18 @@
 
 			</div>
 
-			<div id="instructions" align="center"><h3>G@M3 RUL3S:</h2>
+		<!--- Game Summary Div --->
+
+			<div id="instructions"><h3>ABOUT MATR1X_ 0VERL0AD</h3>
 
 				<p class="stronk">Matrix Overload is a cyberpunk solitaire game where you take down 12 corrupt monarchs by hacking the internet.</p>
 
-				<p>This game uses a standard set of playing cards, jokers loaded, to lay out a grid representing the internet and surround it with royal cards representing your targets. The game is over when you kill all the royals with malicious code (win condition) or you can no longer place any cards in the matrix (game over). Click on the deck to your left to draw a card, and read ahead to understand what each card does!</p>
-
-				<button id="expand-rules" class="button">Show Rules</button>
-
-				
+				<p>This game uses a standard set of playing cards, jokers loaded, to lay out a grid representing the internet and surround it with royal cards representing your targets. You win the game when you kill all the royals with malicious code, and you will lose if you can no longer place any cards in the matrix.</p>
 
 			</div>
-	
-			
+
 		</div>
+
 		<div id="tutorial-overlay" class="overlay">
 			<div class="tutorial-container">
 				<span id="rules">
@@ -122,7 +123,7 @@
 
 					<p><strong>MATRIX OVERLOAD IS A CYBERPUNK SOLITAIRE GAME WHERE YOU TAKE DOWN 12 CORRUPT MONARCHS BY HACKING THE INTERNET.</strong></p>
 
-					<p>This game uses a standard set of playing cards, jokers loaded, to lay out a grid representing the internet and surround it with royal cards representing your targets. You win the game when you kill all the royals with malicious code, and you will lose if you can no longer place any cards in the matrix.</p>
+					
 
 					<p><strong>1. Number Cards</strong> - If the card has a value of 2-10, it is one of the programs in your hack, and you must place it on an empty space or on a card with an equal or lower value.</p>
 
@@ -142,11 +143,10 @@
 				<button id="tutorial-button" class="button tutorial-button">Understood</button>
 			</div>
 		</div>
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 		<script type="text/javascript" src="observer-pattern-setup.js"></script>
 		<script type="text/javascript" src="globals.js"></script>
 		<script type="text/javascript" src="script.js"></script>
-
 	</body>
-	
 </html>
