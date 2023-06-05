@@ -10,6 +10,35 @@
 
 
 
+
+
+/*for (let space of allSpaces) {
+  spaceSelectors[space.gridNum].mousedown(function (event) {
+    if (event.which === 3) {
+      spaceSelectors[space.gridNum].next().toggle('tooltip-text')
+      console.log("You smell.")
+    }
+  }
+  )}*/
+  
+  for (let space of allSpaces) {
+    spaceSelectors[space.gridNum].on('mouseover', () => {
+      console.log("You smell.");
+      if (space.cardStack.length === 0) {
+        spaceSelectors[space.gridNum].next().removeClass('tooltip-text');
+        spaceSelectors[space.gridNum].next().html("");
+      }
+      else {
+      spaceSelectors[space.gridNum].next().addClass('tooltip-text');
+      let cardNames = [];
+      for (let card of space.cardStack) {
+        cardNames.push(card.name+", ")
+      }
+      spaceSelectors[space.gridNum].next().html(cardNames)
+    }
+    })}
+
+
 for (let space of allSpaces) {
   setImageMatrix(space, space);
 }
@@ -46,6 +75,8 @@ newGameButton.on("click", () => {
 
  function resetData () {
   // Reset the draw pile
+  gameOverState = false;
+  killCounter = 0;
   scoreValue = 0;
   drawPile.removeClass('card-clickable');
   currentCard = noCard;
@@ -89,13 +120,10 @@ function gameSetup() {
 
     var randomCard = getRandomCard(numberDeck);
     let randomCardIndex = playingDeck.indexOf(randomCard);
-    console.log(randomCardIndex);
 
     while(randomCardIndex === -1) {
-      console.log(`Double card: ${randomCard.name}. Getting new card!`)
       randomCard = getRandomCard(numberDeck);
       randomCardIndex = playingDeck.indexOf(randomCard);
-      console.log(`New card: ${randomCard.name}`);
     }
 
     updateSpace(matrixSpace, randomCard);
@@ -124,6 +152,7 @@ function getRandomCard(array) {
 
   if(array.length === 0) {
     gameOver("Game Over - You're out of cards!");
+    gameOverState = true;
     return;
   }
 
@@ -215,14 +244,6 @@ function makeMatrixSpacesUnclickable(array)
 
 
 
-function miscTestFunction(data) {
-  // Obviously will be deleted when all functions are in place, just helps me test my signals and click events! :D
-
-  alert(data + " has been passed into me, your test function! :D");
-
-}
-  
-
 
 /*
  ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ ____ ____ ____ ____ 
@@ -302,8 +323,8 @@ function findHighestValueColor (array) {
   for (let card of array) {
     if (card != highestCards[highestCards.length-1]) {
       if (card.value > highestCards[highestCards.length-1].value) {
-        highestCards.push(card);
-        highestCards.splice(0,highestCards.length-1)
+      highestCards = [];
+      highestCards.push(card);
       } 
       else if (card.value === highestCards[highestCards.length-1].value) {
         highestCards.push(card);
@@ -352,10 +373,8 @@ function findLowestValue(array) {
     else if (card.value < lowestCards[lowestCards.length-1].value) {
       lowestCards = [];
       lowestCards.push(card);
-      console.log(lowestCards)
     }
   }
-  console.log(lowestCards);
 
   let lowestCardSpaces = [];
   for (let space of lowestCards) {
@@ -392,9 +411,9 @@ const currentCardObserver = new Observer(drawPile);
 currentCardObserver.subscribe(setHtmlDrawnCard);
 // Subscribes "setHtmlDrawnCard" to be fired every time the draw pile is clicked & the current card is updated.
 
-const matrixClickObserver = new Observer(matrixSpaces);
+// const matrixClickObserver = new Observer(matrixSpaces);
 
-matrixClickObserver.subscribe(miscTestFunction);
+// matrixClickObserver.subscribe(miscTestFunction);
 
 
 // "In addition to that, you should use descriptive nouns and verbs as prefixes. For example, if we declare a function to retrieve a name, the function name should be getName."
@@ -473,7 +492,7 @@ function checkRoyalSpaces() {
       emptyRoyalSpaces.push(space);
     }
   }
-  console.log(emptyRoyalSpaces);
+
 
 
   // Then we put all the matrix spaces adjacent to the empty royal spaces in the array adjacentMatrixSpaces
@@ -483,12 +502,10 @@ function checkRoyalSpaces() {
     var adjMatrixSpace = space.adjSpace;
     // matrixObjects is a dict that we can use to find space objects based on a string 
     adjMatrixSpace = matrixObjects[adjMatrixSpace]
-    console.log(adjMatrixSpace);
     if (adjMatrixSpace.cardStack.length != 0) {
       adjacentMatrixSpaces.push(adjMatrixSpace);
     }
   }
-  console.log(adjacentMatrixSpaces);
 
 
   // Then we check all the adjacent matrix spaces for top cards with matching suits, color or highest value
@@ -511,7 +528,6 @@ function checkRoyalSpaces() {
   // highlight its neighboring empty royal spaces
   else if (colorMatches.length != 0) {
     var highestValueCard = findHighestValueColor(colorMatches);
-    console.log(highestValueCard);
     var arrayMatrixSpaces = [matrixObjects[highestValueCard.gridNum]];
     var arrayRoyalSpaces = convertMatrixToRoyalSpaces(arrayMatrixSpaces);
     makeMatrixSpacesClickable(arrayRoyalSpaces);
@@ -523,11 +539,9 @@ function checkRoyalSpaces() {
   else {
     var valueMatches = findTopCards(adjacentMatrixSpaces);
     var highestValue = findHighestValue(valueMatches);
-    console.log(highestValue);
     // If cards are tied for the highest value, then highlight both of their neighboring empty royal spaces
     if (highestValue.length > 1) {
       var arrayMatrixSpaces = [matrixObjects[highestValue[0].gridNum],matrixObjects[highestValue[1].gridNum]]
-      console.log(arrayMatrixSpaces);
       var arrayRoyalSpaces = convertMatrixToRoyalSpaces(arrayMatrixSpaces);
       makeMatrixSpacesClickable(arrayRoyalSpaces);
       return;
@@ -535,7 +549,6 @@ function checkRoyalSpaces() {
     // if there is one card with the highest value, then highlight its neighboring empty royal spaces
     else {
       var arrayMatrixSpaces = [matrixObjects[highestValue[0].gridNum]]
-      console.log(arrayMatrixSpaces);
       var arrayRoyalSpaces = convertMatrixToRoyalSpaces(arrayMatrixSpaces);
       makeMatrixSpacesClickable(arrayRoyalSpaces);
       return;
@@ -556,7 +569,6 @@ function convertMatrixToRoyalSpaces (array) {
       relevantRoyalSpaces.push(royalObjects[space.adjSpace2])
     }
   }
-  console.log(relevantRoyalSpaces)
   return relevantRoyalSpaces
 }
 
@@ -605,8 +617,11 @@ drawPile.on("click", () => {
   if(currentCard != noCard) {
     
     return;
-  
-  } else {
+  }
+  else if (gameOverState === true) {
+    return;
+  }
+  else {
     drawPile.removeClass('card-clickable')
     let data = drawCard(playingDeck);
     cardRemover(data, playingDeck);
@@ -658,7 +673,6 @@ function attackRoyal (space) {
   var royalTargets = []
   if (space.type != 'royal-space') {
     royalTargets = getAttackTargets(space);
-    console.log(royalTargets);
   }
   else {
     return;
@@ -675,7 +689,6 @@ function attackRoyal (space) {
       attackCards = getAttackers(target);
       targetCard = getTargetCard(target);
        //check if both attack cards are present
-      console.log(attackCards)
       if (attackCards.length === 2) {
         evaluateRoyalTarget(attackCards, targetCard )
       }
@@ -701,7 +714,6 @@ function getAttackTargets (space) {
   if (space.attackSpace2 != null && royalObjects[space.attackSpace2].cardStack != 0) {
     attackArray.push(royalObjects[space.attackSpace2]);
   }
-  console.log(attackArray)
   return attackArray;
 }
 
@@ -747,7 +759,11 @@ function evaluateRoyalTarget(attackCards, targetCard) {
 function attackTarget (attackCards, targetCard) {
   if (targetCard.value <= attackCards[0].value + attackCards[1].value) {
     updateSpace(royalObjects[targetCard.gridNum], graveyard);
-    updateScore(targetCard.value);
+    updateScore((attackCards[0].value + attackCards[1].value)-targetCard.value);
+    var killCounter = killCounter +1;
+    if (killCounter === 12) {
+      gameOver("You killed all 12 royals - You Win!")
+    }
   }
 }
 
@@ -756,7 +772,6 @@ function attackTarget (attackCards, targetCard) {
 function resetCardStack (space) {
   if (space.type != 'royal-space' && currentCard.type === 'joker' || space.type != 'royal-space' && currentCard.type === 'ace') {
     addCardsToDeck(space.cardStack);
-    console.log(space.cardStack);
     space.cardStack.length = 0;
   }
 }
@@ -765,7 +780,6 @@ function resetCardStack (space) {
 
 function addCardsToDeck(cardStack) {
   for (let card of cardStack) {
-    alert(card.name + ' has been added to the deck.')
     playingDeck.push(card);
   }
 }

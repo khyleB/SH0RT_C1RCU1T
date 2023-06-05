@@ -436,6 +436,10 @@ var scoreValue = 0;
 
 const Score = $('#score')
 
+var killCounter = 0;
+
+var gameOverState = false;
+
 // This is just to remind myself what I gotta do:
 
 /*Global data:
