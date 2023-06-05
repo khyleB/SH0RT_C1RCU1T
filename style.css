@@ -223,7 +223,7 @@ img {
   .larger-text{
     text-align: center;
     font-size: 1.5em;
-    line-height: 0px;
+    line-height: 0px !important;
   }
   .hidden-for-mobile {
     display: none;
@@ -249,3 +249,23 @@ img {
     font-size: 12px;
   }
  }
+
+ td:hover .tooltip-text {
+  visibility: visible;
+ }
+
+ .tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  font-size: 11px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 99;
+}
+
