@@ -35,9 +35,7 @@ if (tutHeight <= bodyHeight) {
     "padding-bottom" : heightDiff,
   })
 }
-else {
-  //tutorialOverlay.height(tutContainerHeight)
-}
+
 
 console.log(bodyHeight)
 console.log(tutContainerHeight)
@@ -58,10 +56,8 @@ if (tutHeight <= bodyHeight) {
   })
   console.log("we resized")
 }
-else {
-  //tutorialOverlay.height(tutContainerHeight)
-}
 })
+
 
 
 // Shows the tutorial screen
@@ -69,10 +65,13 @@ rulesButton.on('click', () => {
   tutorialOverlay.toggle('expand-rules');
 })
 
+
+
 // Hides the tutorial screen
 tutorialButton.on('click', () => {
   tutorialOverlay.toggle('overlay')
 })
+
 
 
 // Resets game state
@@ -99,7 +98,6 @@ newGameButton.on("click", () => {
 
   // Reset all spaces
   for (let space of allSpaces) {
-    // How does this function work? It needs a ard argument, but we pass it 2 space objects.
     setImageMatrix(space, space);
     space.setImg('imgs/card-space-blank.png');
     space.cardStack = [];
@@ -109,7 +107,6 @@ newGameButton.on("click", () => {
   // Reset all cards
   for (let card of fullDeck) {
     card.gridNum = null;
-    // How do you reset the health/value of the royal cards?
   }
 }
 
@@ -179,10 +176,9 @@ function getRandomCard(array) {
 
 
 function gameOver(message) {
-  // Game over function!
 
   alert(message);
-  // [unsubscribe all observer subscriptions here]
+
 }
 
 
@@ -211,7 +207,7 @@ function cardRemover(card, array) {
 
 
 function setHtmlDrawnCard(card) {
-  // All this does is set the text & image of the current card that has been drawn
+  // Set the text & image of the current card that has been drawn
 
   drawnCard.attr("src", card.img);
   drawnText.text(card.name);
@@ -230,7 +226,8 @@ function setImageMatrix(space, card) {
 
 
 function makeMatrixSpacesClickable(array) {
- // Adds event listener to a given html element. This is not called directly with a signal, so don't worry about the multiple arguments - they are accounted for in line 235
+ // Adds event listener to a given html element. This is not called directly with a signal, 
+ // so don't worry about the multiple arguments.
 
   for (let space of array) {
    let clickableSpace = spaceSelectors[space.gridNum];
@@ -271,7 +268,7 @@ function makeMatrixSpacesUnclickable(array)
 
 
 function findEmptySpaces(array) {
-  // Goes through a space array and finds spaces with no cards. Duh! (Returns the array of empties)
+  // Goes through a space array and finds spaces with no cards. 
 
   var emptySpaces = []
 
@@ -316,7 +313,7 @@ function findColorMatches(array, card) {
 
 function findHighestValueSuit(array) {
   // Finds the highest numerical cards in a given array and returns the results
-  // Hi future Avi, please remember that this gets duplicate cards because of royal spaces sharing matrix space
+  // Hi future Avi, please remember that this gets duplicate cards because of royal spaces sharing matrix spaces.
   let highestCards = [];
   highestCards.push(array[0]);
   for (let card of array) {
@@ -377,7 +374,7 @@ function findHighestValue (array) {
 
 
 
-// takes an array of cards
+// Takes an array of cards and returns the lowest ones.
 function findLowestValue(array) {
   let lowestCards = [array[0]];
   for (let card of array) {
@@ -465,7 +462,6 @@ function checkCardType(card) {
 
 function checkNumberSpaces() {
     
-    //var emptySpaces = findEmptySpaces(matrixSpaces); 
     var validSpaces = findLowerValueCards(currentCard);
 
     if (validSpaces.length === 0) {
@@ -496,7 +492,6 @@ function findLowerValueCards() {
 
 function checkRoyalSpaces() {
   // Hi future Avi, please remember that this gets duplicate cards because of royal spaces sharing matrix space
-
 
   // First we put all royal spaces with no cards into the array emptyRoyalSpaces
   var emptyRoyalSpaces = [];
@@ -609,7 +604,7 @@ currentCardObserver.subscribe(checkCardType);
 
 
 
-// Define function to check card placement
+
 
 /*
 
@@ -720,6 +715,7 @@ function attackRoyal (space) {
 }
 
 
+
 // returns an array with the royal space objects to attack
 function getAttackTargets (space) {
   var attackArray = [];
@@ -731,6 +727,7 @@ function getAttackTargets (space) {
   }
   return attackArray;
 }
+
 
 
 // returns all number cards involved in attack
@@ -754,7 +751,6 @@ function getTargetCard(target) {
 
 
 
-
 function evaluateRoyalTarget(attackCards, targetCard) {
   if (targetCard.rank === 'jack') {
     attackTarget(attackCards, targetCard);
@@ -769,6 +765,7 @@ function evaluateRoyalTarget(attackCards, targetCard) {
 
   }  
 }
+
 
 
 function attackTarget (attackCards, targetCard) {
