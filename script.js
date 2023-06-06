@@ -774,8 +774,9 @@ function evaluateRoyalTarget(attackCards, targetCard) {
 function attackTarget (attackCards, targetCard) {
   if (targetCard.value <= attackCards[0].value + attackCards[1].value) {
     updateSpace(royalObjects[targetCard.gridNum], graveyard);
-    updateScore((attackCards[0].value + attackCards[1].value)-targetCard.value);
+    updateScore(attackCards[0].value + attackCards[1].value);
     var killCounter = killCounter +1;
+    console.log(killCounter)
     if (killCounter === 12) {
       gameOver("You killed all 12 royals - You Win!")
     }
