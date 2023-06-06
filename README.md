@@ -1,30 +1,27 @@
-# My Awesome Project
+[![banner](imgs/Banner.png)](https://khyleb.github.io/MATR1X_0VERL0AD/)
 
-After some relatively straightforward javascript projects, we wanted to tackle something more complex that would require a deeper understanding of the language. We opted to include the jQuery library for its more intuitive library of terms, as the project relies a great deal on HTML DOM manipulataion.
+## Table of Contents
+- [Description](#description)
+- [Limitations](#limitations)
+- [Lessons Learned](#lessons-learned)
 
-**Link to project:** https://khyleb.github.io/MATR1X_0VERL0AD/
 
-![alt tag] (I don't know what this is)
+## Description
+In this collaborative project [Simon G.](https://github.com/Simon-G1) and I have created a card game using HTML5, CSS3, Javascript and jQuiery. [The game can be played by clicking this link or the banner.](https://khyleb.github.io/MATR1X_0VERL0AD/)
+The goal of this project was to become familiar with Javascript & associated libraries and acquire clean coding habits. The code was written in VS Code and Git Bash and GitHub were used for version control.
 
-## How It's Made:
-
+The card images used are Susan Kare's designs for the original Microsoft Solitaire, chosen to contrast the futuristic theme of the game with recognizable, retro visuals.
 
 ## Limitations
-
-Although this page is responsive and can be scaled down for mobile devices, the card images for the desktop version have all be kept at their original size. The images used are Susan Kare's designs for the original Microsoft Solitaire, chosen to contrast the cyberpunk theme of the game with recognizable, retro visuals. On screens larger than 1200px, the game board's dimensions are maintained for visual cohension and responsiveness largely affects the green background framing the game board. 
-
-## Optimizations
-*(optional)*
-
-Observer pattern saved us helper functions? (Really saved me from giant incomprehensible functions but they don't need to know that lol)
-
-## Lessons Learned:
-
-observer pattern as cleaner way to run multiple reliant functions ?
-As (my? Our?) first collaborative github project, this was excellent practice on how to better structure code for another person to easily read and interact with.
-Using git bash
-Carefully sequencing multiple events?
-The system for connecting html elements to their related javascript objects and modifying both in tandem
+Due to time constraints we have decided not to prioritize responsive design, instead focusing on OOP principles and the game loop.
 
 
+## Lessons Learned 
+- Javascript naming conventions & DOM manipulation
+- Writting reusable modular helper functions
+- Subscribing functions with the observer pattern
+- Creating and extending classes & object instantiation
+- Basic interfaces & encapsulation with setters & getters
+- Version control using Git Bash
 
+While Javascript is versatile, using associated libraries or even frameworks such as Angular or React, becomes desirable in anything but small projects to improve efficiency and speed.
