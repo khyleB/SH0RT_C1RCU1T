@@ -226,13 +226,17 @@ function makeMatrixSpacesClickable(array) {
  // Adds event listener to a given html element. This is not called directly with a signal, 
  // so don't worry about the multiple arguments.
 
+ // NoCard only shows up after a Joker is played. How come? 
+ // Why not after aces are played? Is it bc the joker value is 0?
+ // Why is the same matrix space sent twice, even though there is only one suitable space?
+  console.log(array)
   for (let space of array) {
    let clickableSpace = spaceSelectors[space.gridNum];
    clickableSpace.addClass('card-clickable');
-   clickableSpace.on('click', function () {resetCardStack(space)});
-   clickableSpace.on('click', function () {updateSpace(space ,currentCard)});
+   clickableSpace.on('click', function () {console.log(currentCard);resetCardStack(space)});
+   clickableSpace.on('click', function () {console.log(currentCard);updateSpace(space ,currentCard)});
    clickableSpace.on('click', function () {attackRoyal(space)});
-   clickableSpace.on('click', function () {setHtmlDrawnCard(noCard); currentCard=noCard; makeMatrixSpacesUnclickable(array); drawPile.addClass('card-clickable'); });
+   clickableSpace.on('click', function () {console.log(currentCard),setHtmlDrawnCard(noCard); currentCard=noCard; makeMatrixSpacesUnclickable(array); drawPile.addClass('card-clickable'); });
   }
 }
 
@@ -375,7 +379,7 @@ function findHighestValue (array) {
 function findLowestValue(array) {
   let lowestCards = [array[0]];
   for (let card of array) {
-    if (card.value === lowestCards[lowestCards.length-1].value) {
+    if (card.value === lowestCards[lowestCards.length-1].value && card != array[0]) {
       lowestCards.push(card);
       console.log(lowestCards)
     }
@@ -384,7 +388,7 @@ function findLowestValue(array) {
       lowestCards.push(card);
     }
   }
-
+  console.log(lowestCards)
   let lowestCardSpaces = [];
   for (let space of lowestCards) {
     lowestCardSpaces.push(matrixObjects[space.gridNum]);
@@ -450,8 +454,11 @@ function checkCardType(card) {
 
   }
 
-  else {
+  else if (card.type === 'joker') {
     checkJokerSpaces();
+  }
+  else {
+    alert("attempting to play the invalid card type 'NoCard'.")
   }
 }
 
@@ -585,6 +592,8 @@ function checkAceSpaces() {
 }
 
 
+
+
 function checkJokerSpaces() {
   var topCards = []
   for (let space of matrixSpaces) {
@@ -592,8 +601,8 @@ function checkJokerSpaces() {
       topCards.push(space.cardStack[0]);
     } 
   }
-  console.log(topCards)
   var jokerSpaces = findLowestValue(topCards);
+  console.log(jokerSpaces)
   makeMatrixSpacesClickable(jokerSpaces);
 }
 
@@ -666,8 +675,12 @@ Function remove_current_card_from_deck(current_card, playing_deck[])
 
 
 function updateSpace(space, card) {
+  if (card.name === 'None') {
+    return;
+  }
   let selector = spaceSelectors[space.gridNum];
   card.setGridNum(space.gridNum)
+  console.log(card)
   selector.attr("src", card.img);
   space.cardStack.unshift(card);
 }
@@ -769,7 +782,7 @@ function attackTarget (attackCards, targetCard) {
   if (targetCard.value <= attackCards[0].value + attackCards[1].value) {
     updateSpace(royalObjects[targetCard.gridNum], graveyard);
     updateScore(attackCards[0].value + attackCards[1].value);
-    var killCounter = killCounter +1;
+    killCounter = killCounter +1;
     console.log(killCounter)
     if (killCounter === 12) {
       gameOver("You killed all 12 royals - You Win!")

@@ -436,7 +436,7 @@ var scoreValue = 0;
 
 const Score = $('#score')
 
-var killCounter = 0;
+let killCounter = 0;
 
 var gameOverState = false;
 
