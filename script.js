@@ -36,21 +36,6 @@ if (tutHeight <= bodyHeight) {
   })
 }
 
-var widthDiff = tutWidth - bodyWidth;
-if (tutWidth < bodyWidth) {
-  console.log("width adjusted")
-  tutorialOverlay.css({
-    "padding-left" : widthtDiff/2,
-    "padding-right" : widthtDiff/2,
-  })
-}
-
- 
-console.log(widthDiff)
-console.log(tutWidth)
-console.log(bodyWidth)
-console.log(bodyHeight)
-console.log(tutHeight)
 })
 
 
@@ -67,14 +52,6 @@ if (tutHeight <= bodyHeight) {
     "padding-bottom" : heightDiff,
   })
   console.log("we resized")
-}
-var widthDiff = tutWidth - bodyWidth;
-if (tutWidth < bodyWidth) {
-  console.log("width adjusted")
-  tutorialOverlay.css({
-    "padding-left" : widthDiff/2,
-    "padding-right" : widthDiff/2,
-  })
 }
 })
 
