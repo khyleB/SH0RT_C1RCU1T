@@ -176,9 +176,8 @@ img {
     width: 150px !important;
   }
   .card-clickable {
-    border-radius: 5%;
-    background-image: none;
-    background: rgba(196, 255, 128, 0.733);
+    background-image: url(imgs/card-clickable-l.png);
+    background-color: transparent;
   }
 }
 
@@ -216,11 +215,6 @@ img {
   .mobile-rules {
     display: block;
   }
-  .card-clickable {
-    border-radius: 5%;
-    background-image: none;
-    background: rgba(196, 255, 128, 0.733);
-  }
   .small-flex {
     /*padding: .5em;*/
     display: flex;
@@ -256,7 +250,11 @@ img {
   img {
     width: 80px;
   }
+  .card-clickable {
+    background-image: url(imgs/card-clickable-s.png);
+    background-color: transparent;
  }
+}
 
 
  @media screen and (max-width:425px) {
@@ -266,12 +264,20 @@ img {
   :root {
     font-size: 12px;
   }
+  .card-clickable {
+    background-image: url(imgs/card-clickable-s.png);
+    background-color: transparent;
+ }
  }
 
  @media  screen and (max-width:380px){
   img {
     width: 65px;
   }
+  .card-clickable {
+    background-image: url(imgs/card-clickable-xs.png);
+    background-color: transparent;
+ }
  }
 
 ul {
