@@ -3,7 +3,6 @@
 
 for (let space of allSpaces) {
     spaceSelectors[space.gridNum].on('mouseover', () => {
-      console.log("Hi!")
       if (space.cardStack.length === 0) {
         spaceSelectors[space.gridNum].next().removeClass('tooltip-text');
         spaceSelectors[space.gridNum].next().html("");
@@ -28,7 +27,8 @@ $(window).on('load', gameSetup);
 $(window).on('load', () => {
 var tutHeight= tutorialOverlay.height();
 var bodyHeight = $('html').height();
-var tutContainerHeight = $('.tutorial-container').height();
+var bodyWidth = $('html').width();
+var tutWidth= tutorialOverlay.width();
 if (tutHeight <= bodyHeight) {
   var heightDiff = bodyHeight-tutHeight;
   tutorialOverlay.css({
@@ -36,9 +36,20 @@ if (tutHeight <= bodyHeight) {
   })
 }
 
+var widthDiff = tutWidth - bodyWidth;
+if (tutWidth < bodyWidth) {
+  console.log("width adjusted")
+  tutorialOverlay.css({
+    "padding-left" : widthtDiff/2,
+    "padding-right" : widthtDiff/2,
+  })
+}
 
+ 
+console.log(widthDiff)
+console.log(tutWidth)
+console.log(bodyWidth)
 console.log(bodyHeight)
-console.log(tutContainerHeight)
 console.log(tutHeight)
 })
 
@@ -46,15 +57,24 @@ console.log(tutHeight)
 
 
 $(window).on('resize', () => {
-var tutHeight= tutorialOverlay.height();
-var bodyHeight = $('html').height();
-var tutContainerHeight = $('.tutorial-container').height();
+  var tutHeight= tutorialOverlay.height();
+  var bodyHeight = $('html').height();
+  var bodyWidth = $('html').width();
+  var tutWidth= tutorialOverlay.width();
 if (tutHeight <= bodyHeight) {
   var heightDiff = bodyHeight-tutHeight;
   tutorialOverlay.css({
     "padding-bottom" : heightDiff,
   })
   console.log("we resized")
+}
+var widthDiff = tutWidth - bodyWidth;
+if (tutWidth < bodyWidth) {
+  console.log("width adjusted")
+  tutorialOverlay.css({
+    "padding-left" : widthDiff/2,
+    "padding-right" : widthDiff/2,
+  })
 }
 })
 
