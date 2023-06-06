@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>MATR1X 0VERL0AD</title>
-
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 		<link rel="stylesheet" href="style.css">
@@ -57,50 +57,50 @@
 			</div>
 
 	<!--- Matrix Grid Div --->
-
+			<!-- Remove table case, make one big container for 100% width-->
 			<div id="game-grid">
 
-				<table id="matrix">
-					<tr>
-						<td><img class="null" src="imgs/null-space.png"></td>
-						<td><img id="r1" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r2" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r3" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img class="null" src="imgs/null-space.png"></td>
-					</tr>
+				<div id="matrix">
+					<ul class="row1">
+						<li><img class="null" src="imgs/null-space.png"></li>
+						<li><img id="r1" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r2" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r3" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img class="null" src="imgs/null-space.png"></li>
+					</ul>
 
-					<tr>
-						<td><img id="r12" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m1" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m2" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m3" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r4" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-					</tr>
+					<ul class="row2">
+						<li><img id="r12" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m1" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m2" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m3" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r4" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+					</ul>
 
-					<tr>
-						<td><img id="r11" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m4" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m5" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m6" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r5" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-					</tr>
+					<ul class="row3">
+						<li><img id="r11" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m4" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m5" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m6" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r5" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+					</ul>
 
-					<tr>
-						<td><img id="r10" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m7" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m8" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m9" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r6" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-					</tr>
+					<ul class="row4">
+						<li><img id="r10" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m7" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m8" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m9" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r6" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+					</ul>
 
-					<tr>
-						<td><img class="null" src="imgs/null-space.png"></td>
-						<td><img id="r9" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r8" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r7" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img class="null" src="imgs/null-space.png"></td>
-					</tr>
-				</table>
+					<ul class="row5">
+						<li><img class="null" src="imgs/null-space.png">
+						<li><img id="r9" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r8" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r7" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img class="null" src="imgs/null-space.png">
+					</ul>
+				</div>
 
 			</div>
 

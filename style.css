@@ -82,7 +82,7 @@ img {
 }
 
 #game-grid {
-  width: 60%;
+  width: 100%;
 }
 
 #deck-of-cards {
@@ -250,7 +250,13 @@ img {
   }
  }
 
- td:hover .tooltip-text {
+
+ul {
+  list-style: none;
+  display: flex;
+}
+
+ li:hover .tooltip-text {
   visibility: visible;
  }
 
