@@ -25,14 +25,49 @@ for (let space of allSpaces) {
 
 $(window).on('load', gameSetup);
 
+$(window).on('load', () => {
+var tutHeight= tutorialOverlay.height();
+var bodyHeight = $('html').height();
+var tutContainerHeight = $('.tutorial-container').height();
+if (tutHeight <= bodyHeight) {
+  var heightDiff = bodyHeight-tutHeight;
+  tutorialOverlay.css({
+    "padding-bottom" : heightDiff,
+  })
+}
+else {
+  //tutorialOverlay.height(tutContainerHeight)
+}
+
+console.log(bodyHeight)
+console.log(tutContainerHeight)
+console.log(tutHeight)
+})
+
+
+
+
+$(window).on('resize', () => {
+var tutHeight= tutorialOverlay.height();
+var bodyHeight = $('html').height();
+var tutContainerHeight = $('.tutorial-container').height();
+if (tutHeight <= bodyHeight) {
+  var heightDiff = bodyHeight-tutHeight;
+  tutorialOverlay.css({
+    "padding-bottom" : heightDiff,
+  })
+  console.log("we resized")
+}
+else {
+  //tutorialOverlay.height(tutContainerHeight)
+}
+})
 
 
 // Shows the tutorial screen
 rulesButton.on('click', () => {
   tutorialOverlay.toggle('expand-rules');
 })
-
-
 
 // Hides the tutorial screen
 tutorialButton.on('click', () => {
