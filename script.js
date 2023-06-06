@@ -1,29 +1,9 @@
 "use strict";
 
 
-// To be fixed: Replace all 2s, since they're slightly larger than the other playing cards.
-// To be fixed: Replace the odd looking 5.
-// To be added: Tutorial screen to replace the tutorial bar.
-// BUG: I was allowed to place the 4 of clubs over the 5 of diamonds. The 4 of clubs was also added at the end of 
-// the card stack not the beginning like it's supposed to.
-// Update it seems its the mislabelled 5 of clubs. I think we never merged your new image to GitHub.
-
-
-
-
-
-/*for (let space of allSpaces) {
-  spaceSelectors[space.gridNum].mousedown(function (event) {
-    if (event.which === 3) {
-      spaceSelectors[space.gridNum].next().toggle('tooltip-text')
-      console.log("You smell.")
-    }
-  }
-  )}*/
-  
-  for (let space of allSpaces) {
+for (let space of allSpaces) {
     spaceSelectors[space.gridNum].on('mouseover', () => {
-      console.log("You smell.");
+      console.log("Hi!")
       if (space.cardStack.length === 0) {
         spaceSelectors[space.gridNum].next().removeClass('tooltip-text');
         spaceSelectors[space.gridNum].next().html("");

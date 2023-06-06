@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>MATR1X 0VERL0AD</title>
-
+		<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 		<link rel="stylesheet" href="style.css">
@@ -10,6 +10,33 @@
 	</head>
 
 	<body>
+		<div id="tutorial-overlay" class="overlay">
+			<div class="tutorial-container">
+				<span id="rules">
+					<h5>TUT0R1AL</h5>
+
+					<p><strong>MATRIX OVERLOAD IS A CYBERPUNK SOLITAIRE GAME WHERE YOU TAKE DOWN 12 CORRUPT MONARCHS BY HACKING THE INTERNET.</strong></p>
+
+					
+
+					<p><strong>1. Number Cards</strong> - If the card has a value of 2-10, it is one of the programs in your hack, and you must place it on an empty space or on a card with an equal or lower value.</p>
+
+					<p><strong>2. Royal Cards</strong> - If the card is a royal, it is one of the targets of your card-based hacks! Royals are placed on the outer rim of the matrix, next to the number card(s) that matches their suit and value as closely as possible.</p>
+
+					<p><strong>3. Wild Cards</strong> - Aces and jokers are wild cards - they remove the card pile they're placed on and return it to the deck. Aces can be placed anywhere, while jokers can only be placed on the stack with the lowest-value top card.</p>
+
+					<p><strong>4. Killing Royals</strong> - Each royal has hit points & a kill condition.</p>
+
+					<p>When you place a card in the matrix opposite a royal – so that there are two cards in a row between the stack where you placed a card and a royal – those two cards become an overload of malicious code that are fired at the royal through the matrix. The sum of the two card values is the overload’s power - if the sum of the overload is equal to or greater than the health of the royal & meets the kill condition, the royal is killed.</p>
+
+					<p>Kings have 13 HP and must be killed by same-suit cards, Queens have 12 HP and must be killed by same-colour cards, and Jacks have 11 HP and can be killed by any kind of card. The card that fires the overload does not need to meet the kill conditions.</p>
+					
+					<p><strong>5. Game Over</strong> - If every card in the matrix has a higher value than your current card, you will be unable to place it. This constitutes a grievious coding error, and will blow up your computer and, by extension, you! :(</p>
+
+				</span>
+				<button id="tutorial-button" class="button tutorial-button">Understood</button>
+			</div>
+		</div>
 		<div class="headline">
 			<h1>MATR1X 0VERL0AD</h1>
 			
@@ -57,50 +84,50 @@
 			</div>
 
 	<!--- Matrix Grid Div --->
-
+			<!-- Remove table case, make one big container for 100% width-->
 			<div id="game-grid">
 
-				<table id="matrix">
-					<tr>
-						<td><img class="null" src="imgs/null-space.png"></td>
-						<td><img id="r1" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r2" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r3" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img class="null" src="imgs/null-space.png"></td>
-					</tr>
+				<div id="matrix">
+					<ul class="row1">
+						<li><img class="null" src="imgs/null-space.png"></li>
+						<li><img id="r1" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r2" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r3" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img class="null" src="imgs/null-space.png"></li>
+					</ul>
 
-					<tr>
-						<td><img id="r12" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m1" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m2" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m3" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r4" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-					</tr>
+					<ul class="row2">
+						<li><img id="r12" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m1" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m2" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m3" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r4" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+					</ul>
 
-					<tr>
-						<td><img id="r11" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m4" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m5" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m6" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r5" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-					</tr>
+					<ul class="row3">
+						<li><img id="r11" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m4" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m5" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m6" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r5" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+					</ul>
 
-					<tr>
-						<td><img id="r10" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m7" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m8" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="m9" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r6" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-					</tr>
+					<ul class="row4">
+						<li><img id="r10" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m7" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m8" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="m9" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r6" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+					</ul>
 
-					<tr>
-						<td><img class="null" src="imgs/null-space.png"></td>
-						<td><img id="r9" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r8" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img id="r7" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></td>
-						<td><img class="null" src="imgs/null-space.png"></td>
-					</tr>
-				</table>
+					<ul class="row5">
+						<li><img class="null" src="imgs/null-space.png">
+						<li><img id="r9" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r8" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img id="r7" class="card" src="imgs/card-space-blank.png"><span class="tooltip-text"></span></li>
+						<li><img class="null" src="imgs/null-space.png">
+					</ul>
+				</div>
 
 			</div>
 
@@ -116,33 +143,7 @@
 
 		</div>
 
-		<div id="tutorial-overlay" class="overlay">
-			<div class="tutorial-container">
-				<span id="rules">
-					<h5>TUT0R1AL</h5>
-
-					<p><strong>MATRIX OVERLOAD IS A CYBERPUNK SOLITAIRE GAME WHERE YOU TAKE DOWN 12 CORRUPT MONARCHS BY HACKING THE INTERNET.</strong></p>
-
-					
-
-					<p><strong>1. Number Cards</strong> - If the card has a value of 2-10, it is one of the programs in your hack, and you must place it on an empty space or on a card with an equal or lower value.</p>
-
-					<p><strong>2. Royal Cards</strong> - If the card is a royal, it is one of the targets of your card-based hacks! Royals are placed on the outer rim of the matrix, next to the number card(s) that matches their suit and value as closely as possible.</p>
-
-					<p><strong>3. Wild Cards</strong> - Aces and jokers are wild cards - they remove the card pile they're placed on and return it to the deck. Aces can be placed anywhere, while jokers can only be placed on the stack with the lowest-value top card.</p>
-
-					<p><strong>4. Killing Royals</strong> - Each royal has hit points & a kill condition.</p>
-
-					<p>When you place a card in the matrix opposite a royal – so that there are two cards in a row between the stack where you placed a card and a royal – those two cards become an overload of malicious code that are fired at the royal through the matrix. The sum of the two card values is the overload’s power - if the sum of the overload is equal to or greater than the health of the royal & meets the kill condition, the royal is killed.</p>
-
-					<p>Kings have 13 HP and must be killed by same-suit cards, Queens have 12 HP and must be killed by same-colour cards, and Jacks have 11 HP and can be killed by any kind of card. The card that fires the overload does not need to meet the kill conditions.</p>
-					
-					<p><strong>5. Game Over</strong> - If every card in the matrix has a higher value than your current card, you will be unable to place it. This constitutes a grievious coding error, and will blow up your computer and, by extension, you! :(</p>
-
-				</span>
-				<button id="tutorial-button" class="button tutorial-button">Understood</button>
-			</div>
-		</div>
+		
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 		<script type="text/javascript" src="observer-pattern-setup.js"></script>
