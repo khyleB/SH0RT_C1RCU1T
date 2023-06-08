@@ -100,7 +100,7 @@ const royalSpaces = [r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12];
 const allSpaces = [...matrixSpaces, ...royalSpaces];
 
 for (let space of allSpaces) {
-	space.setImg('imgs/card-space-blank.png');
+	space.setImg('imgs/card-space-blank2.png');
 }
 
 /*     ----------     Basic card constructor     ----------     */
@@ -122,7 +122,7 @@ class Card {
 	}
 }
 
-const noCard = new Card('imgs/card-space-blank.png', 'None', -1);
+const noCard = new Card('imgs/card-space-blank2.png', 'None', -1);
 const graveyard = new Card ('imgs/dead-royal.png' , 'Dead Royal', -2);
 
 
