@@ -17,12 +17,12 @@
 body {
   padding-top: 1rem;
   background-color: #004800;
-  max-height: 100%;
+  height: 100%;
   overflow-x: hidden;
 }
 
 html {
-  max-height: 100%;
+  height: 100%;
   overflow-x: hidden;
 }
 
@@ -139,6 +139,8 @@ img {
 
 .overlay {
   position: absolute;
+ 
+  min-height: 100%;
   top: 0;
   left: 0;
 
