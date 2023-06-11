@@ -16,14 +16,15 @@
 
 body {
   padding-top: 1rem;
-  background-color: #004800;
-  height: 100%;
+  background-color: #020314;
+  min-height: 100%;
   overflow-x: hidden;
+  
 }
 
 html {
-  height: 100%;
-  overflow-x: hidden;
+  min-height: 100%;
+
 }
 
 p {
@@ -57,7 +58,7 @@ img {
   margin: auto;
   padding: 1rem;
   max-width: 1250px;
-  background-image: url("imgs/soli-bg.png");
+  background-image: url("imgs/soli-bg2.png");
   background-repeat: repeat;
   display: flex;
   align-content: center;
@@ -70,7 +71,7 @@ img {
   padding: 1.5em;
   max-width: 30%;
   height: fit-content;
-  background-color: rgba(167, 255, 49, 0.6);
+  background-color: rgba(166, 255, 49, 0.582);
   border: 2px solid black;
   border-radius: 25px;
 }
@@ -140,7 +141,7 @@ img {
 .overlay {
   position: absolute;
  
-  min-height: 100%;
+  min-height: auto;
   top: 0;
   left: 0;
 

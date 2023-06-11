@@ -96,7 +96,7 @@ newGameButton.on("click", () => {
   // Reset all spaces
   for (let space of allSpaces) {
     setImageMatrix(space, space);
-    space.setImg('imgs/card-space-blank.png');
+    space.setImg('imgs/card-space-blank2.png');
     space.cardStack = [];
     makeMatrixSpacesUnclickable(allSpaces)
   }
@@ -196,7 +196,7 @@ function cardRemover(card, array) {
   array.splice(cardIndex, 1);
 
   if(array.length === 0) {
-    drawPile.attr("src", "imgs/card-space-blank.png");
+    drawPile.attr("src", "imgs/card-space-blank2.png");
     gameOver("Game Over - You're out of cards!");
   }
 }
