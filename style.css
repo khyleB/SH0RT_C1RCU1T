@@ -217,6 +217,11 @@ img {
   img {
     width: 150px !important;
   }
+  
+  #game-finish-img {
+    min-height: 30%;
+    min-width: auto;
+  }
   .card-clickable {
     background-image: url(imgs/card-clickable-l.png);
     background-color: transparent;
