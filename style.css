@@ -202,8 +202,8 @@ img {
 }
 
 #game-finish-img {
-  min-height: 30%;
-  min-width: auto;
+  min-height: 30% !important;
+  min-width: auto !important;
 }
 
 .game-incomplete {
