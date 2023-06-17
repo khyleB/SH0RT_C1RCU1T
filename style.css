@@ -201,9 +201,8 @@ img {
   padding: 1.5rem;
 }
 
-#game-finish-img {
-  min-height: 30%;
-  min-width: auto;
+#game-finish-message img {
+  min-width: 70%;
 }
 
 .game-incomplete {
