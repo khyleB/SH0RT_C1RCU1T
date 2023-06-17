@@ -202,8 +202,8 @@ img {
 }
 
 #game-finish-img {
-  min-height: 30% !important;
-  min-width: auto !important;
+  min-height: 30%;
+  min-width: auto;
 }
 
 .game-incomplete {
@@ -219,8 +219,8 @@ img {
   }
   
   #game-finish-img {
-    min-height: 30%;
-    min-width: auto;
+    min-height: 30% !important;
+    min-width: auto !important;
   }
   .card-clickable {
     background-image: url(imgs/card-clickable-l.png);
