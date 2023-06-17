@@ -426,11 +426,21 @@ const newGameButton = $("#new-game");
 
 const rulesButton = $("#expand-rules");
 
+const replayButton = $("#replay-button");
+
 const rules = $("#rules");
 
 const tutorialButton = $('#tutorial-button');
 
 const tutorialOverlay = $('#tutorial-overlay');
+
+const gameFinishOverlay = $("#game-finish-overlay");
+
+const gameFinishMessage = $("#game-finish-message");
+
+const gameFinishText = $("#game-finish-text")
+
+const gameFinishImg = $("#game-finish-img")
 
 var scoreValue = 0;
 

@@ -51,7 +51,6 @@ if (tutHeight <= bodyHeight) {
   tutorialOverlay.css({
     "padding-bottom" : heightDiff,
   })
-  console.log("we resized")
 }
 })
 
@@ -81,6 +80,15 @@ newGameButton.on("click", () => {
   gameSetup();
   
  });
+
+replayButton.on("click", () => {
+  gameFinishOverlay.addClass("game-incomplete");
+  gameFinishOverlay.removeClass("overlay-small");
+
+  resetData(); 
+
+  gameSetup();
+})
  
 
 
@@ -144,8 +152,6 @@ function gameSetup() {
 
 
 
-
-
 /*
  ____ ____ ____ ____ ____ ____ _________ ____ ____ ____ ____ ____ ____ ____ ____ ____ 
 ||H |||e |||l |||p |||e |||r |||       |||F |||u |||n |||c |||t |||i |||o |||n |||s ||
@@ -160,7 +166,9 @@ function getRandomCard(array) {
   // Rolls a random number and gets the card at that index
 
   if(array.length === 0) {
-    gameOver("Game Over - You're out of cards!");
+    gameFinishText.text("Game Over! Your deck is out of cards.");
+    gameFinishImg.attr("src", "imgs/lose-screen.png");
+    gameOver();
     gameOverState = true;
     return;
   }
@@ -172,11 +180,17 @@ function getRandomCard(array) {
 
 
 
-function gameOver(message) {
-
-  alert(message);
-
+function gameOver() {
+  gameFinishOverlay.removeClass("game-incomplete");
+  gameFinishOverlay.addClass("overlay-small");
 }
+
+
+function gameWon() {
+  gameFinishOverlay.removeClass("game-incomplete");
+  gameFinishOverlay.addClass("overlay-small");
+}
+
 
 
 
@@ -195,9 +209,11 @@ function cardRemover(card, array) {
   let cardIndex = array.indexOf(card);
   array.splice(cardIndex, 1);
 
-  if(array.length === 0) {
+  if(array.length === 0 && currentCard === noCard) {
     drawPile.attr("src", "imgs/card-space-blank2.png");
-    gameOver("Game Over - You're out of cards!");
+    gameFinishText.text("Game Over! Your deck is out of cards.");
+    gameFinishImg.attr("src", "imgs/lose-screen.png");
+    gameOver();
   }
 }
 
@@ -469,7 +485,9 @@ function checkNumberSpaces() {
     var validSpaces = findLowerValueCards(currentCard);
 
     if (validSpaces.length === 0) {
-      gameOver("Game Over - You can't play your card!")
+        gameFinishText.text("Game Over! You can't play your card.");
+        gameFinishImg.attr("src", "imgs/lose-screen.png");
+        gameOver();
     
     } else {
       makeMatrixSpacesClickable(validSpaces)
@@ -785,7 +803,9 @@ function attackTarget (attackCards, targetCard) {
     killCounter = killCounter +1;
     console.log(killCounter)
     if (killCounter === 12) {
-      gameOver("You killed all 12 royals - You Win!")
+      gameFinishText.text("Congratulations! You killed all 12 royals! You win!!!");
+      gameFinishImg.attr("src", "imgs/win-screen.png");
+      gameWon();
     }
   }
 }
