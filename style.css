@@ -201,6 +201,11 @@ img {
   padding: 1.5rem;
 }
 
+#game-finish-img {
+  min-height: 30%;
+  min-width: auto;
+}
+
 .game-incomplete {
   display: none;
 }
