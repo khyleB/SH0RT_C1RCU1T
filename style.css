@@ -293,7 +293,7 @@ img {
  }
 
 @media screen and (max-width:730px) {
-  #game-finish-img {
+  #game-finish-message img {
     min-width: 30%;
   }
 }
