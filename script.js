@@ -166,8 +166,8 @@ function getRandomCard(array) {
   // Rolls a random number and gets the card at that index
 
   if(array.length === 0) {
-    gameFinishText.text("Game Over! Your deck is out of cards.");
     gameFinishImg.attr("src", "imgs/lose-screen.png");
+    gameFinishText.text("Game Over! Your deck is out of cards.");
     gameOver();
     gameOverState = true;
     return;
@@ -211,8 +211,8 @@ function cardRemover(card, array) {
 
   if(array.length === 0 && currentCard === noCard) {
     drawPile.attr("src", "imgs/card-space-blank2.png");
-    gameFinishText.text("Game Over! Your deck is out of cards.");
     gameFinishImg.attr("src", "imgs/lose-screen.png");
+    gameFinishText.text("Game Over! Your deck is out of cards.");
     gameOver();
   }
 }
@@ -485,8 +485,8 @@ function checkNumberSpaces() {
     var validSpaces = findLowerValueCards(currentCard);
 
     if (validSpaces.length === 0) {
-        gameFinishText.text("Game Over! You can't play your card.");
         gameFinishImg.attr("src", "imgs/lose-screen.png");
+        gameFinishText.text("Game Over! You can't play your card.");
         gameOver();
     
     } else {
@@ -803,8 +803,8 @@ function attackTarget (attackCards, targetCard) {
     killCounter = killCounter +1;
     console.log(killCounter)
     if (killCounter === 12) {
-      gameFinishText.text("Congratulations! You killed all 12 royals! You win!!!");
       gameFinishImg.attr("src", "imgs/win-screen.png");
+      gameFinishText.text("Congratulations! You killed all 12 royals! You win!!!");
       gameWon();
     }
   }
