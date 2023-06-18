@@ -201,7 +201,7 @@ img {
   padding: 1.5rem;
 }
 
-#game-finish-img {
+#game-finish-message img {
   min-width: 70%;
   height: auto;
   object-fit: scale-down;
@@ -294,7 +294,9 @@ img {
 
 @media screen and (max-width:730px) {
   #game-finish-message img {
-    min-width: 30%;
+    min-width: 10%;
+    max-width: 80%;
+    max-height: 80%;
   }
 }
 
