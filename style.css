@@ -294,6 +294,7 @@ img {
 
 @media screen and (max-width:730px) {
   #game-finish-message img {
+    width: 250px;
     min-width: 10%;
     max-width: 80%;
     max-height: 80%;
@@ -305,6 +306,9 @@ img {
   img {
     width: 80px;
   }
+   #game-finish-message img {
+     width: 200px;
+   }
   .card-clickable {
     background-image: url(imgs/card-clickable-s.png);
     background-color: transparent;
