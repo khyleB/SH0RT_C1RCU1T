@@ -25,4 +25,4 @@ Due to time constraints, the main priority while coding this game was to focus o
 - Basic interfaces & encapsulation with setters & getters
 - Version control using Git Bash & GitHub
 
-While Javascript is versatile, using associated libraries or even frameworks such as Angular or React, becomes desirable in anything but small projects to improve efficiency and speed.
+While Javascript is versatile, using associated libraries or frameworks becomes desirable in anything but small projects to improve efficiency and speed.
