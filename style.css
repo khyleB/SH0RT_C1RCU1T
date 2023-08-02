@@ -186,6 +186,9 @@ img {
     background-image: url(imgs/card-clickable-l.png);
     background-color: transparent;
   }
+  #deck-of-cards {
+    margin-left: 3em;
+  }
 }
 
 
@@ -201,7 +204,6 @@ img {
     margin: 0;
     width: 100%;
     justify-content: center;
-    margin-left: 3em;
   }
   #instructions {
     margin-top: 2em;
