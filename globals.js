@@ -1,14 +1,14 @@
+"use strict";
+
 // Basic Card Space Constructor
 
-"use strict"; // This enables strict mode which flags uncaught errors. I can omit it or keep it in, whichever seems smarter to you
-
 class Space {
-	constructor(gridNum, type, adjSpace) { // Sets up the object constructor. Duh :P
+	constructor(gridNum, type, adjSpace) { 
 
 		this.gridNum = gridNum;
 		this.type = type;
 		this.cardStack = [];
-		this.adjSpace= adjSpace; //adjacent royal spaces. You can suggest better variable names
+		this.adjSpace= adjSpace; 
 		var img;
 	}
 
@@ -28,7 +28,7 @@ class MatrixSpace extends Space { // Making an object constructor for the number
 
 		super(gridNum, type, adjSpace);
 		this.adjSpace2 = adjSpace2;
-	    this.attackSpace1 = attackSpace1; // royal spaces that will be attacked when you place a card in this space. You can suggest better variable names
+	    this.attackSpace1 = attackSpace1; // royal spaces that will be attacked when you place a card in this space
 	    this.attackSpace2 = attackSpace2;
 
 	}
@@ -340,8 +340,6 @@ for (let card of fullDeck) {
 	card.setGridNum(null);
 }
 
-/*          ----------  VAR Variables that relate to these CONST variables  ----------          */
-
 var playingDeck = [];
 
 var topCardArray = [];
@@ -449,12 +447,3 @@ const Score = $('#score')
 let killCounter = 0;
 
 var gameOverState = false;
-
-// This is just to remind myself what I gotta do:
-
-/*Global data:
-numerical_fields[], numerical_cards[], full_deck[], 
-all_numerical_fields [ m1 … m9 ], setup_numerical_fields [ m1...m9, no m5],
-free_royal_fields [r1…r12]
-Field : Object { “card_stack” : array [ ], grind_num : int }, 
-Card : Object { “grid_num” : int }*/
