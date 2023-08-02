@@ -1,0 +1,373 @@
+@font-face {
+  font-family: "Informa";
+  src: url("./Informa.ttf");
+}
+
+@font-face {
+  font-family: "BlackCaps";
+  src: url("./BlackCaps.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 1rem;
+  background-color: #020314;
+  min-height: 100%;
+  overflow-x: hidden;
+  
+}
+
+html {
+  min-height: 100%;
+
+}
+
+p {
+  color: #FFFFFF;
+  font-family: "Informa";
+  font-size: 1.5em;
+}
+
+.larger-text {
+  color: #FFFFFF;
+}
+
+h1, h2, h3, h4, h5 {
+  margin: .2em;
+  color: white;
+  font-family: "BlackCaps";
+}
+
+img {
+  border: none;
+}
+
+.headline {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.full-gameboard {
+  border: 0;
+  border-radius: 25px;
+  margin: auto;
+  padding: 1rem;
+  max-width: 1250px;
+  background-image: url("imgs/soli-bg2.png");
+  background-repeat: repeat;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+#instructions {
+  display: block;
+  text-align: center;
+  padding: 1.5em;
+  max-width: 30%;
+  height: fit-content;
+  background-color: rgba(166, 255, 49, 0.582);
+  border: 2px solid black;
+  border-radius: 25px;
+}
+
+#instructions p {
+  font-size: 1.25em;
+  color: black;
+}
+
+#instructions h3 {
+  font-size: 1.5em;
+}
+
+#game-grid {
+  width: 100%;
+}
+
+#deck-of-cards {
+  width: 200px;
+  text-align: center;
+  padding: 1em;
+  margin-right: 2em;
+}
+
+#drawn-card, #draw-pile {
+  margin: 1em;
+}
+
+#instructions p {
+  margin: 0;
+}
+
+.collapsed-rules {
+  display: none;
+}
+
+.expanded-rules {
+  display: block;
+}
+
+.stronk {
+  font-weight: bold;
+}
+
+.button {
+  padding: .5em;
+  margin: .5em;
+  border-color: green;
+  border-radius: 10px;
+  background-color: rgb(167, 255, 49);
+}
+
+.card {
+  border: none;
+  background-color: transparent;
+
+}
+
+.card-clickable {
+  background-image: url(imgs/card-clickable.png);
+  background-color: transparent;
+  border: none;
+}
+
+/*          ---------- Rules Overlay ----------          */
+
+.overlay {
+  position: absolute;
+  min-height: auto;
+  top: 0;
+  left: 0;
+
+  background-color: rgb(0, 0, 0);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.tutorial-container {
+  width: 85%;
+  height: 85%;
+  background-color: rgb(0, 0, 0);
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tutorial-button {
+  margin-top: 20px;
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#rules {
+  color: white;
+}
+
+.overlay-small {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0%;
+  left: 0%;
+  min-width: 100vw;
+  min-height: 100vh;
+  z-index: 10;
+}
+
+#game-finish-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 60%;
+  min-height: 60%;
+  max-width: 80%;
+  max-height: 80%;
+  background-color: rgb(166, 255, 49);
+  border: 3px solid #000000;
+  border-radius: 25px;
+  padding: 1.5rem;
+}
+
+#game-finish-message img {
+  min-width: 70%;
+  height: auto;
+  object-fit: scale-down;
+}
+
+.game-incomplete {
+  display: none;
+}
+
+
+/*          ---------- Media Screens ----------          */
+
+@media screen and (min-width:1400px) {
+  img {
+    width: 150px !important;
+  }
+
+  #deck-of-cards {
+    margin-left: 3em;
+  }
+  
+  #game-finish-message img {
+    min-width: 70% !important;
+  }
+  .card-clickable {
+    background-image: url(imgs/card-clickable-l.png);
+    background-color: transparent;
+  }
+}
+
+
+@media screen and (max-width:1000px) {
+  .full-gameboard {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #deck-of-cards {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    width: 100%;
+    justify-content: center;
+  }
+  #instructions {
+    margin-top: 2em;
+    order: 10;
+    max-width: 90%;
+    height: fit-content;
+    text-align: center;
+  }
+  .tutorial-container {
+    padding: 1em;
+  }
+
+  #game-grid {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+  }
+  .mobile-rules {
+    display: block;
+  }
+  .small-flex {
+    /*padding: .5em;*/
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-height: 25%;
+  }
+  .small-flex h3
+  {
+    text-align: center;
+    font-size: 1em;
+  }
+  .larger-text{
+    text-align: center;
+    font-size: 1.5em;
+    line-height: 0px !important;
+  }
+  .hidden-for-mobile {
+    display: none;
+  }
+  #drawn-card {
+    align-self: flex-end;
+  }
+  :root {
+    font-size: 14px;
+  }
+ }
+
+@media screen and (max-width:730px) {
+  #game-finish-message img {
+   width: 100%;
+   object-fit: cover;
+    /*width: 250px;
+    min-width: 10%;
+    max-width: 80%;
+    max-height: 80%;*/
+  }
+}
+
+
+ @media screen and (max-width:550px) {
+  img {
+    width: 80px;
+  }
+   #game-finish-message img {
+     width: 100%;
+     object-fit: cover;
+   }
+  .card-clickable {
+    background-image: url(imgs/card-clickable-s.png);
+    background-color: transparent;
+ }
+}
+
+
+ @media screen and (max-width:425px) {
+  img {
+    width: 80px;
+  }
+  :root {
+    font-size: 12px;
+  }
+  .card-clickable {
+    background-image: url(imgs/card-clickable-s.png);
+    background-color: transparent;
+ }
+ }
+
+ @media screen and (max-width:380px){
+  img {
+    width: 65px;
+  }
+  .card-clickable {
+    background-image: url(imgs/card-clickable-xs.png);
+    background-color: transparent;
+ }
+ }
+
+ul {
+  list-style: none;
+  display: flex;
+  
+}
+
+ li:hover .tooltip-text {
+  visibility: visible;
+ }
+
+ .tooltip-text {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  font-size: 11px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 99;
+}
+
