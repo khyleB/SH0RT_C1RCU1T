@@ -94,6 +94,7 @@ img {
   text-align: center;
   padding: 1em;
   margin-right: 2em;
+  margin-left: .5em;
 }
 
 #drawn-card, #draw-pile {
