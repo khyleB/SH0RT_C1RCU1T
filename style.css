@@ -94,7 +94,6 @@ img {
   text-align: center;
   padding: 1em;
   margin-right: 2em;
-  margin-left: .5em;
 }
 
 #drawn-card, #draw-pile {
@@ -202,6 +201,7 @@ img {
     margin: 0;
     width: 100%;
     justify-content: center;
+    margin-left: 3em;
   }
   #instructions {
     margin-top: 2em;
