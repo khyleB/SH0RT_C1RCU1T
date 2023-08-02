@@ -17,8 +17,6 @@
 
 					<p><strong>SH0RT_C1RCU1T IS A CYBERPUNK SOLITAIRE GAME WHERE YOU TAKE DOWN 12 CORRUPT MONARCHS BY HACKING THE INTERNET.</strong></p>
 
-					
-
 					<p><strong>1. Number Cards</strong> - If the card has a value of 2-10, it is one of the programs in your hack, and you must place it on an empty space or on a card with an equal or lower value.</p>
 
 					<p><strong>2. Royal Cards</strong> - If the card is a royal, it is one of the targets of your card-based hacks! Royals are placed on the outer rim of the matrix, next to the number card(s) that matches their suit and value as closely as possible.</p>
@@ -27,7 +25,7 @@
 
 					<p><strong>4. Killing Royals</strong> - Each royal has hit points & a kill condition.</p>
 
-					<p>When you place a card in the matrix opposite a royal – so that there are two cards in a row between the stack where you placed a card and a royal – those two cards become an overload of malicious code that are fired at the royal through the matrix. The sum of the two card values is the overload’s power - if the sum of the overload is equal to or greater than the health of the royal & meets the kill condition, the royal is killed.</p>
+					<p>When you place a card in the matrix opposite a royal – so that there are two cards in a row between the stack where you placed a card and a royal – those two cards are your attempt at hacking the royal's computer. The sum of the two card values determines the success of your hack - if the sum is equal to or greater than the health of the royal & meets the kill condition, the royal's computer short circuits & explodes, killing the targetted royal.</p>
 
 					<p>Kings have 13 HP and must be killed by same-suit cards, Queens have 12 HP and must be killed by same-colour cards, and Jacks have 11 HP and can be killed by any kind of card. The card that fires the overload does not need to meet the kill conditions.</p>
 					
@@ -37,6 +35,19 @@
 				<button id="tutorial-button" class="button tutorial-button">Understood</button>
 			</div>
 		</div>
+
+
+		<div id="game-finish-overlay" class="game-incomplete">
+			<div id="game-finish-message">
+					<h5 id="game-finish-text">Game Over!</h5>
+					<br>
+					<img id="game-finish-img" src="imgs/win-screen.png">
+					<br>
+				<button id="replay-button" class="button">Play Again!</button>
+			</div>
+		</div>
+
+
 		<div class="headline">
 			<h1>SH0RT_C1RCU1T</h1>
 			
@@ -135,7 +146,7 @@
 
 			<div id="instructions"><h3>ABOUT SH0RT_C1RCU1T</h3>
 
-				<p class="stronk">SH0RT_C1RCU1T is a cyberpunk solitaire game where you take down 12 corrupt monarchs by hacking the internet.</p>
+				<p class="stronk">Short Circuit is a cyberpunk solitaire game where you take down 12 corrupt monarchs by hacking the internet.</p>
 
 				<p>This game uses a standard set of playing cards, jokers loaded, to lay out a grid representing the internet and surround it with royal cards representing your targets. You win the game when you kill all the royals with malicious code, and you will lose if you can no longer place any cards in the matrix.</p>
 
@@ -144,7 +155,7 @@
 		</div>
 
 		
-
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 		<script type="text/javascript" src="observer-pattern-setup.js"></script>
 		<script type="text/javascript" src="globals.js"></script>
