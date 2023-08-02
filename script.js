@@ -223,13 +223,6 @@ function setImageMatrix(space, card) {
 
 
 function makeMatrixSpacesClickable(array) {
- // Adds event listener to a given html element. This is not called directly with a signal, 
- // so don't worry about the multiple arguments.
-
- // NoCard only shows up after a Joker is played. How come? 
- // Why not after aces are played? Is it bc the joker value is 0?
- // Why is the same matrix space sent twice, even though there is only one suitable space?
-  console.log(array)
   for (let space of array) {
    let clickableSpace = spaceSelectors[space.gridNum];
    clickableSpace.addClass('card-clickable');
@@ -313,8 +306,6 @@ function findColorMatches(array, card) {
 
 
 function findHighestValueSuit(array) {
-  // Finds the highest numerical cards in a given array and returns the results
-  // Hi future Avi, please remember that this gets duplicate cards because of royal spaces sharing matrix spaces.
   let highestCards = [];
   highestCards.push(array[0]);
   for (let card of array) {
@@ -422,15 +413,6 @@ const currentCardObserver = new Observer(drawPile);
 // Observes drawpile clicks
 
 currentCardObserver.subscribe(setHtmlDrawnCard);
-// Subscribes "setHtmlDrawnCard" to be fired every time the draw pile is clicked & the current card is updated.
-
-// const matrixClickObserver = new Observer(matrixSpaces);
-
-// matrixClickObserver.subscribe(miscTestFunction);
-
-
-// "In addition to that, you should use descriptive nouns and verbs as prefixes. For example, if we declare a function to retrieve a name, the function name should be getName."
-
 
 
 function checkCardType(card) {
@@ -495,9 +477,7 @@ function findLowerValueCards() {
 
 
 function checkRoyalSpaces() {
-  // Hi future Avi, please remember that this gets duplicate cards because of royal spaces sharing matrix space
-
-  // First we put all royal spaces with no cards into the array emptyRoyalSpaces
+    
   var emptyRoyalSpaces = [];
   
   for (let space of royalSpaces) {
@@ -508,8 +488,7 @@ function checkRoyalSpaces() {
   }
 
 
-
-  // Then we put all the matrix spaces adjacent to the empty royal spaces in the array adjacentMatrixSpaces
+    
   var adjacentMatrixSpaces = [];
 
   for (let space of emptyRoyalSpaces) {
@@ -619,13 +598,6 @@ currentCardObserver.subscribe(checkCardType);
 ||__|||__|||__|||__|||_______|||__|||__|||__|||__|||__|||_______|||__|||__|||__|||__|||__|||__|||__|||__|||__||
 |/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|
 
-Example past Khyle needed that I'm keeping just in case lol:
-/*
-
-[htmlElement].on("click", () => {
-  Observable.notify(event.target.id); // Notifies all subscribed observers
-});
-
 */
 
 drawPile.on("click", () => {
@@ -654,22 +626,6 @@ drawPile.on("click", () => {
 ||C |||l |||i |||c |||k |||e |||d |||S |||p |||a |||c |||e |||       |||O |||b |||s |||e |||r |||v |||e |||r |||s ||
 ||__|||__|||__|||__|||__|||__|||__|||__|||__|||__|||__|||__|||_______|||__|||__|||__|||__|||__|||__|||__|||__|||__||
 |/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|
-*/
-
-
-
-/* new subject - clickedSpace. Observer should fire:
-- updateGridTopCard
-- updateGridCardStack
-- royalAttacker(if number)
-*/
-
-
-
-/*Function make_clickable(deck)
-Input on_deck_clicked() → function make_uncklickable(deck)
-Input on_deck_clicked() → function draw_card(playing_deck[]) return current_card
-Function remove_current_card_from_deck(current_card, playing_deck[])
 */
 
 
@@ -703,7 +659,6 @@ function attackRoyal (space) {
     var attackCards = [];
     var targetCard;
 
-    // we're checking one royal at a time
     for (let target of royalTargets) {
       // target is a royal space and the function returns an array with the attacker cards
       attackCards = getAttackers(target);
