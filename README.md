@@ -1,4 +1,4 @@
-[![banner](imgs/S_C_Banner.png)](https://khyleb.github.io/SH0RT_C1RCU1T/)
+[![banner](imgs/Banner.png)](https://khyleb.github.io/SH0RT_C1RCU1T/)
 
 ## Table of Contents
 - [Description](#description)
