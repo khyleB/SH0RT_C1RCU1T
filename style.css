@@ -218,6 +218,10 @@ img {
   img {
     width: 150px !important;
   }
+
+  #deck-of-cards {
+    margin-left: 3em;
+  }
   
   #game-finish-message img {
     min-width: 70% !important;
