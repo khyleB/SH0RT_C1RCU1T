@@ -7,7 +7,7 @@
 
 
 ## Description
-In this collaborative project [Simon G.](https://github.com/Simon-G1) and I have created a card game using HTML5, CSS3, Javascript and jQuery. <br>
+In this collaborative project [Simon G.](https://github.com/Netizen-Sys10) and I have created a card game using HTML5, CSS3, Javascript and jQuery. <br>
 [The game can be played by clicking this link or the banner.](https://khyleb.github.io/SH0RT_C1RCU1T/)
 <br><br>
 The goal of this project was to become familiar with Javascript & associated libraries and acquire clean coding habits. The code was written in VS Code, and Git Bash & GitHub were used for version control.
